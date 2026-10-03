@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guide · Benday</title>
+  <meta name="description" content="How to set up Benday with your Komga server, and how reading, downloads, sync and the other features work.">
+  <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="assets/img/favicon.png" alt="" width="36" height="36">Benday</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="docs.html">Guide</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-head dots">
+      <div class="wrap">
+        <p class="kicker">Guide</p>
+        <h1>Using Benday</h1>
+        <p class="lede">From the first sign-in to the last page: setup, reading, downloads and everything in Settings.</p>
+      </div>
+    </div>
+
+    <div class="wrap docs">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#getting-started">Getting started</a></li>
+          <li><a href="#signing-in">Signing in</a></li>
+          <li><a href="#library">Home and library</a></li>
+          <li><a href="#reading">Reading</a></li>
+          <li><a href="#display">Display settings</a></li>
+          <li><a href="#offline">Downloads and offline</a></li>
+          <li><a href="#sync">Sync between devices</a></li>
+          <li><a href="#ratings">Ratings and Discover</a></li>
+          <li><a href="#tracking">Tracking and Komf</a></li>
+          <li><a href="#local">Files on your device</a></li>
+          <li><a href="#privacy">Privacy and app lock</a></li>
+          <li><a href="#backup">Backup and restore</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ol>
+      </nav>
+
+      <article class="prose">
+        <h2 id="getting-started">Getting started</h2>
+        <p>Benday reads from <a href="https://komga.org">Komga</a>, a free server for comics, manga and webtoons that you install on a computer, NAS or home server. Benday doesn't come with any comics: it shows what's on your server.</p>
+        <ol class="steps">
+          <li><div><strong>Have a Komga server.</strong> Your own, or one a friend shares with you. Follow Komga's <a href="https://komga.org/docs/category/installation">installation guide</a> and add a library.</div></li>
+          <li><div><strong>Install Benday</strong> from Google Play on your Android phone or tablet (Android 7 or newer).</div></li>
+          <li><div><strong>Sign in</strong> with the server's address and your Komga account. See <a href="#signing-in">Signing in</a>.</div></li>
+          <li><div><strong>Start reading.</strong> Your libraries appear under Libraries; anything you've started shows on Home.</div></li>
+        </ol>
+
+        <h2 id="signing-in">Signing in</h2>
+        <h3>Server address</h3>
+        <p>Enter the address you use to open Komga in a browser, for example <code>http://192.168.1.20:25600</code> on your home network or <code>https://comics.example.com</code> from anywhere. If Komga runs under a path (<code>https://example.com/komga</code>), include it.</p>
+        <p>To read away from home, the server must be reachable from outside: through a reverse proxy with HTTPS, or a VPN such as WireGuard or Tailscale. Downloaded books work without any connection.</p>
+        <h3>Password or API key</h3>
+        <p>Sign in with your Komga email and password, or leave the password empty and use an <strong>API key</strong> instead (Komga 1.15 or newer). Create one in Komga under Account settings. An API key can be revoked on its own without changing your password.</p>
+        <h3>HTTPS and self-signed certificates</h3>
+        <p>Servers with a normal certificate (Let's Encrypt, for example) just work. If your server uses a <strong>self-signed certificate</strong>, Benday shows the certificate's details and fingerprint and asks whether to trust it. Only trust it if it's your server: Benday then remembers that certificate for that address and warns you if it ever changes.</p>
+        <h3>Several servers</h3>
+        <p>Settings › Servers keeps more than one server; switch between them there. Tracker links are kept per server.</p>
+
+        <h2 id="library">Home and library</h2>
+        <p><strong>Home</strong> is a column of shelves: Continue Reading, On Deck (the next book of series you're reading), new books, Want to Read, Upcoming (the next book of series still running, with an estimated date) and Discover. Drag shelves to reorder or hide them. To add your own, filter a library and choose <em>Save as Home shelf</em>.</p>
+        <p><strong>Libraries, Collections and Read Lists</strong> mirror your server, with search, filters (read status, genre, publisher, age rating and more) and sorting. On tablets, lists and details sit side by side.</p>
+        <p>Long-press a book or series for quick actions: mark read or unread, download, add to a collection or read list, or open the series.</p>
+
+        <h2 id="reading">Reading</h2>
+        <h3>Reading modes</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Mode</th><th>For</th></tr></thead>
+            <tbody>
+              <tr><td>Left to right</td><td>Western comics</td></tr>
+              <tr><td>Right to left</td><td>Manga</td></tr>
+              <tr><td>Vertical</td><td>Page by page, scrolling down</td></tr>
+              <tr><td>Webtoon</td><td>One continuous strip; chapters follow each other without a break</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Benday uses the series' reading direction from Komga, and guesses webtoon from very tall pages. Change it from the reader's toolbar for this series only, or set a default in Settings › Reader.</p>
+        <h3>Turning pages</h3>
+        <p>Tap the left or right edge, swipe, or use the volume keys (Settings › Reader › Tap zones and volume keys). Keyboards and Bluetooth page turners work too: arrow keys, Page Up/Down and space. Tap the middle of the page to show the toolbar and the page slider.</p>
+        <h3>Spreads and wide pages</h3>
+        <p>In landscape, and on tablets, Benday can show two pages side by side. If a spread starts on the wrong page, shift it by one. In portrait, wide double pages can be split into two pages or turned sideways.</p>
+        <h3>Guided view</h3>
+        <p>Guided view moves panel by panel, which suits phones. Turn it on from the reader's toolbar. If it gets the panels of a page wrong, report it from the page's menu (long-press the page).</p>
+        <h3>Bookmarks and page actions</h3>
+        <p>Bookmark a page from the toolbar; all bookmarks of a book are listed in the bookmarks sheet. Long-press a page to save or share it, or (as a Komga admin) make it the book's or series' cover.</p>
+
+        <h2 id="display">Display settings</h2>
+        <p>The gear in the reader opens the display settings: page fit, zoom, background, brightness, contrast, saturation, colour filters, sharpening, and webtoon side padding and gaps. Choose whether changes apply to <strong>this series only</strong> or to every series; per-series settings follow you to your other devices.</p>
+        <p>Settings › Look changes the whole app's look: eight styles, each with a light and dark side, following the system's dark mode or set by hand.</p>
+
+        <h2 id="offline">Downloads and offline</h2>
+        <ul>
+          <li><strong>Download</strong> a book, a whole series, a collection or a read list from its menu. Downloads continue in the background, with a progress notification.</li>
+          <li><strong>Books to keep ready:</strong> Benday can keep the next books of the series you're reading downloaded, so the next one is always there.</li>
+          <li><strong>Auto-download new books</strong> of a series when they arrive on the server.</li>
+          <li><strong>Wi-Fi only</strong> and a <strong>storage limit</strong> (Settings › Downloads). Over the limit, the oldest books you've finished are removed first.</li>
+          <li><strong>Downloads › Library</strong> shows everything on the device, grouped by series, even with no connection.</li>
+        </ul>
+        <p>Reading progress made offline is saved on the device and sent to the server the next time you're connected.</p>
+
+        <h2 id="sync">Sync between devices</h2>
+        <p>Benday keeps its shared data in your Komga account, so there is nothing extra to set up:</p>
+        <ul>
+          <li>Reading progress (Komga's own, also seen by Komga's web reader and other apps)</li>
+          <li>Bookmarks, ratings and Want to Read</li>
+          <li>Per-series display settings and reading direction</li>
+        </ul>
+        <p>Downloads, statistics, history and app settings stay on each device.</p>
+
+        <h2 id="ratings">Ratings and Discover</h2>
+        <p>Rate a series from its page. Ratings, together with what you've read, feed the <strong>Discover</strong> shelf, which suggests unread series that share writers, artists, genres or tags with the ones you liked, and says why. Want to Read is a list of series to start later.</p>
+
+        <h2 id="tracking">Tracking and Komf</h2>
+        <p><strong>MangaUpdates:</strong> sign in under Settings › Tracking, link a series from its menu (<em>Track on…</em>), and Benday updates your MangaUpdates list as you read. If MangaUpdates is further along than Komga, Benday offers to mark the earlier books read.</p>
+        <p><strong>Komf</strong> is a metadata tool for Komga. If you run one, enter its address in Settings; admins then get <em>Identify with Komf</em> and <em>Auto-match</em> in a series' menu.</p>
+
+        <h2 id="local">Files on your device</h2>
+        <p>The Local Files tab opens CBZ, CBR and PDF files (and ZIP or RAR archives of images) from your device without a server. Benday remembers where you stopped in each.</p>
+
+        <h2 id="privacy">Privacy and app lock</h2>
+        <ul>
+          <li><strong>App lock</strong> asks for your fingerprint, face or screen lock when Benday opens. It needs a screen lock on the device.</li>
+          <li><strong>Incognito</strong> reads without recording progress or history, until you turn it off.</li>
+          <li>Benday sends nothing to its developer. See the <a href="privacy.html">privacy policy</a>.</li>
+        </ul>
+
+        <h2 id="backup">Backup and restore</h2>
+        <p>Settings › Backup &amp; restore saves a file with your settings, server addresses, usernames, statistics and history. It never contains passwords or API keys, so after restoring on a new phone you sign in again. Downloads aren't included.</p>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+        <h3>"Cannot reach server"</h3>
+        <p>Open the same address in the phone's browser. If that fails too, the phone can't reach the server: check that you're on the same network (or the VPN is on), the port is right, and there's no firewall in the way. <code>localhost</code> means the phone itself, so use the server's network address instead.</p>
+        <h3>"This doesn't look like a Komga server"</h3>
+        <p>The address answered, but not with Komga. A login page (an SSO proxy, for example) or a wrong path is in the way. Use the address that opens Komga itself.</p>
+        <h3>Certificate errors</h3>
+        <p>Check the certificate is valid for the name you typed. For a self-signed certificate, accept the trust dialog when Benday offers it. If the certificate changed (renewed), Benday asks again.</p>
+        <h3>Something else</h3>
+        <p>Look through the <a href="faq.html">FAQ</a>, or <a href="feedback.html">report it</a>.</p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <strong>Benday</strong>
+      <nav aria-label="Footer">
+        <a href="docs.html">Guide</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <p class="legal">Benday is not affiliated with Komga. Google Play is a trademark of Google LLC.</p>
+    </div>
+  </footer>
+  <script src="config.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ · Benday</title>
+  <meta name="description" content="Answers to common questions about Benday, the Android reader for Komga.">
+  <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="assets/img/favicon.png" alt="" width="36" height="36">Benday</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="docs.html">Guide</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-head dots">
+      <div class="wrap">
+        <p class="kicker">FAQ</p>
+        <h1>Questions and answers</h1>
+        <p class="lede">The short answers. The <a href="docs.html">guide</a> has the long ones.</p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="faq">
+        <h2 class="faq-group">About Benday</h2>
+
+        <details>
+          <summary>Does Benday come with comics?</summary>
+          <div><p>No. Benday is a reader for <a href="https://komga.org">Komga</a>, a server you run yourself (or that someone shares with you). It shows the comics, manga and webtoons on that server, and files already on your device.</p></div>
+        </details>
+
+        <details>
+          <summary>What does it cost?</summary>
+          <div><p>Nothing. There are no ads, subscriptions or in-app purchases.</p></div>
+        </details>
+
+        <details>
+          <summary>Is Benday made by the Komga team?</summary>
+          <div><p>No. Benday is an independent app that uses Komga's public API. Questions about the server itself belong with <a href="https://komga.org">Komga</a>; questions about the app, <a href="feedback.html">here</a>.</p></div>
+        </details>
+
+        <details>
+          <summary>Why the name?</summary>
+          <div><p>Ben-Day dots are the little coloured dots old comics were printed with, the ones in the app icon. They're named after Benjamin Day, the illustrator who invented the process in 1879.</p></div>
+        </details>
+
+        <details>
+          <summary>Is there an iPhone or desktop version?</summary>
+          <div><p>Not at the moment: Benday is for Android phones, tablets and Chromebooks. On other devices, Komga's own web reader works in any browser.</p></div>
+        </details>
+
+        <h2 class="faq-group">Setup</h2>
+
+        <details>
+          <summary>Which Komga version do I need?</summary>
+          <div><p>A recent Komga 1.x; keeping the server up to date is the safest bet. Signing in with an API key needs Komga 1.15 or newer.</p></div>
+        </details>
+
+        <details>
+          <summary>It says "Cannot reach server". What now?</summary>
+          <div>
+            <p>Open the same address in your phone's browser. If that fails too, the phone can't reach the server:</p>
+            <ul>
+              <li>At home: is the phone on the same Wi-Fi? Is the port right (Komga's default is 25600)?</li>
+              <li>Away from home: is the server published through a reverse proxy, or is your VPN on?</li>
+              <li><code>localhost</code> or <code>127.0.0.1</code> mean the phone itself. Use the server's network address.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>My server has a self-signed certificate. Will it work?</summary>
+          <div><p>Yes. Benday shows the certificate and asks whether to trust it. If you do, it remembers that exact certificate for that server and asks again if it changes, which also protects you from someone impersonating the server. A free Let's Encrypt certificate avoids the question altogether.</p></div>
+        </details>
+
+        <details>
+          <summary>Can I use plain HTTP?</summary>
+          <div><p>Yes, which is handy on a home network. Keep in mind that on HTTP your password and books travel unencrypted, so use HTTPS or a VPN for anything outside your own network.</p></div>
+        </details>
+
+        <details>
+          <summary>I use single sign-on (Authelia, Authentik…) in front of Komga.</summary>
+          <div><p>Benday talks to Komga's API and can't fill in a login page. Let the API through your proxy without SSO (Komga still checks the password or API key), or connect over your VPN to Komga directly. If Benday says the address "doesn't look like a Komga server", a login page is in the way.</p></div>
+        </details>
+
+        <h2 class="faq-group">Reading</h2>
+
+        <details>
+          <summary>Which formats can Benday read?</summary>
+          <div><p>Everything Komga serves: CBZ, CBR, PDF and EPUB (comics and novels). Files on your device can be CBZ, CBR or PDF.</p></div>
+        </details>
+
+        <details>
+          <summary>A manga opens left to right. How do I change it?</summary>
+          <div><p>Pick right to left from the reader's toolbar; Benday remembers it for that series on all your devices. To fix it for everyone, set the series' reading direction in Komga.</p></div>
+        </details>
+
+        <details>
+          <summary>Does my progress sync with Komga's web reader and other apps?</summary>
+          <div><p>Yes. Benday saves progress to Komga, so the web reader and other Komga apps see it. Bookmarks, ratings and per-series settings sync between your Benday devices.</p></div>
+        </details>
+
+        <details>
+          <summary>How do I read without updating my progress?</summary>
+          <div><p>Turn on Incognito, in the menu at the top of Home or in Settings. Until you turn it off, nothing is recorded: no progress, history or statistics.</p></div>
+        </details>
+
+        <h2 class="faq-group">Downloads</h2>
+
+        <details>
+          <summary>Where are downloaded books stored? Can I move them to an SD card?</summary>
+          <div><p>In Benday's own app storage, which other apps can't read. Android doesn't let apps move that storage to an SD card. Settings › Downloads has a storage limit to keep it in check.</p></div>
+        </details>
+
+        <details>
+          <summary>Downloads stop when I leave the app.</summary>
+          <div><p>Benday keeps downloading in the background with a notification. Some phones (Samsung, Xiaomi, Huawei and others) still stop background apps to save battery. Set Benday's battery use to "Unrestricted" in Android's app settings.</p></div>
+        </details>
+
+        <h2 class="faq-group">Privacy</h2>
+
+        <details>
+          <summary>What data does Benday collect?</summary>
+          <div><p>None for us. There are no accounts, analytics or crash reports. Your data goes only to your Komga server and to services you connect yourself. The <a href="privacy.html">privacy policy</a> has the details.</p></div>
+        </details>
+
+        <details>
+          <summary>Where is my password kept?</summary>
+          <div><p>On your device, in Android's encrypted storage, and it is only sent to your server. Backups never include it.</p></div>
+        </details>
+
+        <h2 class="faq-group">Help</h2>
+
+        <details>
+          <summary>I found a bug or have an idea.</summary>
+          <div><p>Post it on the <a href="feedback.html">feedback page</a>. Bug reports help most with the app version (Settings › About), your Android version and device, and the steps that lead to the problem.</p></div>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <strong>Benday</strong>
+      <nav aria-label="Footer">
+        <a href="docs.html">Guide</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <p class="legal">Benday is not affiliated with Komga. Google Play is a trademark of Google LLC.</p>
+    </div>
+  </footer>
+  <script src="config.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

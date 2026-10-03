@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feedback · Benday</title>
+  <meta name="description" content="Report a bug, suggest a feature or ask a question about Benday.">
+  <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="assets/img/favicon.png" alt="" width="36" height="36">Benday</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="docs.html">Guide</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-head dots">
+      <div class="wrap">
+        <p class="kicker">Feedback</p>
+        <h1>Tell us what you think</h1>
+        <p class="lede">Bugs, ideas and questions go on a public board, where you can also follow what happens to them and vote on other people's ideas.</p>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap split">
+        <div class="panel">
+          <div class="callout" id="tracker-missing" hidden>
+            <p><strong>The feedback board isn't open yet.</strong> It will be by the time Benday is on Google Play.</p>
+          </div>
+          <form class="form" id="feedback-form" novalidate>
+            <fieldset class="field">
+              <legend>What is it about?</legend>
+              <div class="kinds">
+                <label class="kind"><input type="radio" name="kind" value="bug" checked><span>Something's wrong<small>A bug or crash</small></span></label>
+                <label class="kind"><input type="radio" name="kind" value="idea"><span>An idea<small>A feature or change</small></span></label>
+                <label class="kind"><input type="radio" name="kind" value="question"><span>A question<small>How do I…?</small></span></label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="title">Summary</label>
+              <input type="text" id="title" name="title" maxlength="120" placeholder="Webtoon chapters skip a page at the join" required>
+            </div>
+
+            <div class="field">
+              <label for="details">Details</label>
+              <textarea id="details" name="details" required placeholder="What did you do, what did you expect, and what happened instead?"></textarea>
+              <span class="hint">For a bug: the steps that lead to it. For an idea: what you'd use it for.</span>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="app">Benday version</label>
+                <input type="text" id="app" name="app" placeholder="Settings › About">
+              </div>
+              <div class="field">
+                <label for="device">Android &amp; device</label>
+                <input type="text" id="device" name="device" placeholder="Android 15, Pixel 8">
+              </div>
+              <div class="field">
+                <label for="komga">Komga version</label>
+                <input type="text" id="komga" name="komga" placeholder="1.21.0">
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn btn-primary" type="submit">Continue on the feedback board</button>
+            </div>
+            <p class="form-status" id="form-status" role="status"></p>
+          </form>
+        </div>
+
+        <div>
+          <h2>How it works</h2>
+          <ol class="steps">
+            <li><div>Fill in the form. Nothing is sent from this page.</div></li>
+            <li><div>The feedback board opens in a new tab with your text filled in.</div></li>
+            <li><div>Sign in there (a free account) and press Create. You'll get replies by email.</div></li>
+          </ol>
+          <div class="callout" style="margin-top:24px">
+            <p><strong>Everything on the board is public.</strong> Leave out your server's address, usernames, passwords and anything else private.</p>
+          </div>
+          <p data-issues-only hidden>Before posting, see whether it's already there: <a data-issues href="#">browse the board</a>. A thumbs-up on an existing idea counts as much as a new post.</p>
+          <p>Quick questions are often answered in the <a href="faq.html">FAQ</a>.</p>
+          <p data-play-only hidden>Enjoying Benday? A rating on <a data-play href="#">Google Play</a> helps other Komga users find it.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <strong>Benday</strong>
+      <nav aria-label="Footer">
+        <a href="docs.html">Guide</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <p class="legal">Benday is not affiliated with Komga. Google Play is a trademark of Google LLC.</p>
+    </div>
+  </footer>
+  <script src="config.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
