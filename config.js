@@ -14,5 +14,5 @@ window.BENDAY = {
   issues: 'https://github.com/PalleKarlsson/benday/issues',
 
   // Contact address for privacy questions (also in privacy.html).
-  email: '',
+  email: 'bendaydev@gmail.com',
 };
