@@ -20,7 +20,7 @@ window.BENDAY = {
   // the page says sign-ups open soon.
   beta: {
     group: 'https://groups.google.com/g/benday-testers',
-    optIn: '',
+    optIn: 'https://play.google.com/apps/testing/app.benday.reader',
   },
 
   // Contact address for privacy questions (also in privacy.html).
