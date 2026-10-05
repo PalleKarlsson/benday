@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pallekarlsson.github.io/benday/sitemap.xml

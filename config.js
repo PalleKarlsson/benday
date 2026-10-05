@@ -13,6 +13,16 @@ window.BENDAY = {
   // form explains that the tracker isn't up yet.
   issues: 'https://github.com/PalleKarlsson/benday/issues',
 
+  // The closed test on Google Play (beta.html). group: the Google Group
+  // testers join, e.g. 'https://groups.google.com/g/benday-testers' (the
+  // group is the closed test's tester list). optIn: Play's opt-in link
+  // (Testing › Closed testing › Testers › "Join on the web"). Empty group:
+  // the page says sign-ups open soon.
+  beta: {
+    group: 'https://groups.google.com/g/benday-testers',
+    optIn: '',
+  },
+
   // Contact address for privacy questions (also in privacy.html).
   email: 'bendaydev@gmail.com',
 };

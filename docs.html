@@ -7,6 +7,7 @@
   <meta name="description" content="How to set up Benday with your Komga server, and how reading, downloads, sync and the other features work.">
   <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://pallekarlsson.github.io/benday/docs.html">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -18,6 +19,7 @@
         <a href="index.html">Home</a>
         <a href="docs.html">Guide</a>
         <a href="faq.html">FAQ</a>
+        <a href="beta.html">Beta</a>
         <a href="feedback.html">Feedback</a>
       </nav>
     </div>
@@ -67,7 +69,7 @@
         <p>Enter the address you use to open Komga in a browser, for example <code>http://192.168.1.20:25600</code> on your home network or <code>https://comics.example.com</code> from anywhere. If Komga runs under a path (<code>https://example.com/komga</code>), include it.</p>
         <p>To read away from home, the server must be reachable from outside: through a reverse proxy with HTTPS, or a VPN such as WireGuard or Tailscale. Downloaded books work without any connection.</p>
         <h3>Password or API key</h3>
-        <p>Sign in with your Komga email and password, or leave the password empty and use an <strong>API key</strong> instead (Komga 1.15 or newer). Create one in Komga under Account settings. An API key can be revoked on its own without changing your password.</p>
+        <p>Sign in with your Komga email and password, or switch the sign-in form to <strong>API key</strong> and paste a key instead (Komga 1.15 or newer). Create one in Komga under Account settings, or once signed in under Settings › API keys. An API key can be revoked on its own without changing your password, and it works for accounts that sign in through single sign-on.</p>
         <h3>HTTPS and self-signed certificates</h3>
         <p>Servers with a normal certificate (Let's Encrypt, for example) just work. If your server uses a <strong>self-signed certificate</strong>, Benday shows the certificate's details and fingerprint and asks whether to trust it. Only trust it if it's your server: Benday then remembers that certificate for that address and warns you if it ever changes.</p>
         <h3>Several servers</h3>
@@ -75,6 +77,7 @@
 
         <h2 id="library">Home and library</h2>
         <p><strong>Home</strong> is a column of shelves: Continue Reading, On Deck (the next book of series you're reading), new books, Want to Read, Upcoming (the next book of series still running, with an estimated date) and Discover. Drag shelves to reorder or hide them. To add your own, filter a library and choose <em>Save as Home shelf</em>.</p>
+        <p><strong>Updates</strong> (See all on the New Books shelf) lists new books by day and series and marks the ones added since you last looked; the filter button narrows it to series you're reading.</p>
         <p><strong>Libraries, Collections and Read Lists</strong> mirror your server, with search, filters (read status, genre, publisher, age rating and more) and sorting. On tablets, lists and details sit side by side.</p>
         <p>Long-press a book or series for quick actions: mark read or unread, download, add to a collection or read list, or open the series.</p>
 
@@ -93,7 +96,7 @@
         </div>
         <p>Benday uses the series' reading direction from Komga, and guesses webtoon from very tall pages. Change it from the reader's toolbar for this series only, or set a default in Settings › Reader.</p>
         <h3>Turning pages</h3>
-        <p>Tap the left or right edge, swipe, or use the volume keys (Settings › Reader › Tap zones and volume keys). Keyboards and Bluetooth page turners work too: arrow keys, Page Up/Down and space. Tap the middle of the page to show the toolbar and the page slider.</p>
+        <p>Tap the left or right edge, swipe, or use the volume keys (Settings › Reader › Tap zones and volume keys). Keyboards and Bluetooth page turners work too: arrow keys, Page Up/Down and space. With a Samsung S Pen, press the button for the next page, double-press for the previous one, or swipe the pen left or right (Air actions; remap them in Android Settings › Advanced features › S Pen). Tap the middle of the page to show the toolbar and the page slider.</p>
         <h3>Spreads and wide pages</h3>
         <p>In landscape, and on tablets, Benday can show two pages side by side. If a spread starts on the wrong page, shift it by one. In portrait, wide double pages can be split into two pages or turned sideways.</p>
         <h3>Guided view</h3>
@@ -111,6 +114,8 @@
           <li><strong>Books to keep ready:</strong> Benday can keep the next books of the series you're reading downloaded, so the next one is always there.</li>
           <li><strong>Auto-download new books</strong> of a series when they arrive on the server.</li>
           <li><strong>Wi-Fi only</strong> and a <strong>storage limit</strong> (Settings › Downloads). Over the limit, the oldest books you've finished are removed first.</li>
+          <li><strong>Simultaneous downloads:</strong> up to three books download at once (two by default).</li>
+          <li><strong>SD card:</strong> on a device with a memory card, Downloads › Queue &amp; settings › Download location keeps downloads on the card, and offers to move the ones you already have.</li>
           <li><strong>Downloads › Library</strong> shows everything on the device, grouped by series, even with no connection.</li>
         </ul>
         <p>Reading progress made offline is saved on the device and sent to the server the next time you're connected.</p>
@@ -122,7 +127,7 @@
           <li>Bookmarks, ratings and Want to Read</li>
           <li>Per-series display settings and reading direction</li>
         </ul>
-        <p>Downloads, statistics, history and app settings stay on each device.</p>
+        <p>The app's theme, look, image quality and smart downloads setting follow your account too. Downloads, statistics, history and the other settings stay on each device.</p>
 
         <h2 id="ratings">Ratings and Discover</h2>
         <p>Rate a series from its page. Ratings, together with what you've read, feed the <strong>Discover</strong> shelf, which suggests unread series that share writers, artists, genres or tags with the ones you liked, and says why. Want to Read is a list of series to start later.</p>
@@ -163,6 +168,7 @@
       <nav aria-label="Footer">
         <a href="docs.html">Guide</a>
         <a href="faq.html">FAQ</a>
+        <a href="beta.html">Beta</a>
         <a href="feedback.html">Feedback</a>
         <a href="privacy.html">Privacy</a>
       </nav>

@@ -4,7 +4,9 @@
 
 @font-face {
   font-family: 'Bowlby One';
-  src: url('fonts/BowlbyOne-Regular.ttf') format('truetype');
+  /* The OFL font as distributed, only repackaged as WOFF2 (not subset:
+     "Bowlby One" is a Reserved Font Name). */
+  src: url('fonts/BowlbyOne-Regular.woff2') format('woff2');
   font-display: swap;
 }
 
@@ -23,7 +25,7 @@
   --denim: #3e6995;
   --denim-wash: #d6e1ee;
   --mustard: #ddae3e;
-  --mustard-deep: #8a6410;
+  --mustard-deep: #7a580c;
   --mustard-wash: #f3dfa8;
   --dot: rgba(178, 62, 51, 0.16);
   --shadow: 0 1px 0 rgba(42, 36, 32, 0.08), 0 8px 24px -12px rgba(42, 36, 32, 0.25);
@@ -67,7 +69,12 @@ body {
   background: var(--ground);
   color: var(--ink);
   font: 17px/1.6 var(--body);
+  /* The footer stays at the bottom of short pages. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+body > main { flex: 1; }
 
 img { max-width: 100%; height: auto; }
 
@@ -142,7 +149,22 @@ a:hover { text-decoration-thickness: 2px; }
   border-radius: 999px;
 }
 .site-nav a:hover { color: var(--ink); background: var(--sunk); }
-.site-nav a[aria-current='page'] { color: var(--brick); background: var(--brick-wash); }
+.site-nav a[aria-current='page'] { color: #922f25; background: var(--brick-wash); }
+/* Phones: the links get a row of their own instead of wrapping in two. */
+@media (max-width: 560px) {
+  .site-header .wrap { row-gap: 0; min-height: 56px; padding-top: 8px; }
+  .site-nav {
+    margin-left: 0;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .site-nav a { padding: 6px 8px; font-size: 0.9rem; white-space: nowrap; }
+  /* The logo already links home. */
+  .site-nav a[href='index.html'] { display: none; }
+}
 @media (prefers-color-scheme: dark) {
   .site-nav a[aria-current='page'] { color: #ffd9d3; }
 }
@@ -229,6 +251,36 @@ code, kbd {
 
 section { padding-block: 56px; }
 section + section { border-top: 1px solid var(--rule); }
+
+/* Screenshots: three across, a swipeable row on phones. */
+.shots-section { padding-block: 40px 24px; }
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin-inline: auto;
+}
+.shots figure { margin: 0; }
+.shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.12);
+}
+.shots figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--ink-soft); text-align: center; }
+.credits { max-width: 960px; margin: 20px auto 0; font-size: 0.78rem; color: var(--ink-soft); text-align: center; }
+@media (max-width: 720px) {
+  .shots {
+    grid-template-columns: repeat(3, 72%);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+  }
+  .shots figure { scroll-snap-align: center; }
+}
 .section-head { max-width: 40em; margin-bottom: 32px; }
 
 .features {
@@ -297,6 +349,8 @@ section + section { border-top: 1px solid var(--rule); }
   margin: 0 0 1.2em;
 }
 .callout p:last-child { margin: 0; }
+/* Brick on the mustard wash is too faint (both themes). */
+.callout a { color: var(--ink); }
 
 /* ---------- Docs layout ---------- */
 
@@ -315,7 +369,7 @@ section + section { border-top: 1px solid var(--rule); }
 .toc a { display: block; color: var(--ink-soft); text-decoration: none; padding: 5px 10px; border-radius: 8px; border-left: 3px solid transparent; }
 .toc a:hover { color: var(--ink); background: var(--sunk); }
 .prose { max-width: 44em; }
-.prose h2 { margin-top: 1.6em; scroll-margin-top: 88px; padding-top: 0.4em; border-top: 1px solid var(--rule); }
+.prose h2 { margin-top: 1.6em; scroll-margin-top: 104px; padding-top: 0.4em; border-top: 1px solid var(--rule); }
 .prose h2:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
 .prose h3 { margin-top: 1.4em; }
 .prose ul, .prose ol { padding-left: 1.3em; margin: 0 0 1em; }
@@ -397,6 +451,7 @@ fieldset { border: 0; padding: 0; margin: 0; }
 }
 .kind span small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.85rem; }
 .kind input:checked + span { border-color: var(--brick); background: var(--brick-wash); }
+.kind input:checked + span small { color: var(--ink); }
 .kind input:focus-visible + span { outline: 3px solid var(--denim); outline-offset: 2px; }
 .form-status { font-size: 0.9rem; color: var(--ink-soft); min-height: 1.4em; margin: 0; }
 
@@ -412,6 +467,8 @@ fieldset { border: 0; padding: 0; margin: 0; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .site-footer a { color: var(--ink-soft); }
+/* Big enough to tap. */
+.site-footer nav a { display: inline-block; padding-block: 10px; }
 .site-footer .legal { flex-basis: 100%; margin: 0; font-size: 0.82rem; }
 
 .placeholder { background: var(--mustard-wash); padding: 0 0.25em; border-radius: 4px; }
