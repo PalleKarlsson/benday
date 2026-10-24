@@ -24,5 +24,5 @@ window.BENDAY = {
   },
 
   // Contact address for privacy questions (also in privacy.html).
-  email: 'bendaydev@gmail.com',
+  email: 'support@getbenday.com',
 };
