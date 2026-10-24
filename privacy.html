@@ -7,7 +7,7 @@
   <meta name="description" content="Benday sends nothing to its developer. What the app stores and where your data goes.">
   <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
-  <link rel="canonical" href="https://pallekarlsson.github.io/benday/privacy.html">
+  <link rel="canonical" href="https://getbenday.com/privacy.html">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -35,9 +35,11 @@
 
     <div class="wrap">
       <article class="prose" style="padding-block: 40px 72px">
-<p><em>Last updated: 4 October 2026</em></p>
-<p>Benday is a reader for comics, manga and webtoons stored on a
-<a href="https://komga.org">Komga</a> server that you run or have access to. Benday is
+<p><em>Last updated: 24 October 2026</em></p>
+<p>Benday is a reader for comics, manga and webtoons stored on a server that
+you run or have access to: <a href="https://komga.org">Komga</a>,
+<a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>
+or an OPDS catalog. Benday is
 developed by Palle Karlsson ("we"). This policy explains what the app does
 with your data.</p>
 <h2>The short version</h2>
@@ -45,16 +47,24 @@ with your data.</p>
 analytics, no advertising and no crash reporting. Your data stays on your
 device and on the servers you connect it to.</p>
 <h2>Data the app handles</h2>
-<p><strong>Your Komga server address and sign-in.</strong> The server address, your username
+<p><strong>Your server address and sign-in.</strong> The server address, your username
 and your password or API key are stored on your device. Passwords, API keys
 and tracker tokens are kept in Android's encrypted storage. They are sent
-only to the server you entered, to sign you in.</p>
+only to the server you entered, to sign you in. For Kavita and Stump, Benday uses
+your password once to get an API key for your account and stores only the
+key. On Stump, Benday creates that key on your account for this device,
+named "Benday (…)", and deletes the earlier keys it created for this
+device; you can see and revoke it in Stump's settings. If
+you enter a separate KOReader sync login for a catalog, it is stored the
+same way and sent only to that server's KOReader sync.</p>
 <p><strong>Your library and reading.</strong> Covers, pages and books are loaded from your
-Komga server. Your reading progress is saved to your Komga account. Bookmarks,
-ratings, your Want to Read list and per-series reader settings are saved on
-your device and synced through your own Komga account, so they appear on
-your other devices. Downloaded books, image caches and reading statistics
-stay on your device.</p>
+server. Your reading progress is saved on your device and to your account
+on the server, where the server takes it (Komga, Kavita, Stump and some OPDS
+servers, directly or through the server's KOReader sync). On Komga,
+bookmarks, ratings, your Want to read list and per-series reader settings
+are also synced through your own Komga account, so they appear on your
+other devices; on other servers they stay on your device. Downloaded books,
+image caches and reading statistics stay on your device.</p>
 <p><strong>Optional services you choose to connect:</strong></p>
 <ul>
 <li><strong>MangaUpdates</strong>: if you sign in to MangaUpdates in Settings, Benday
@@ -64,18 +74,33 @@ stay on your device.</p>
 <li><strong>Komf</strong>: if you enter the address of your own Komf server (a metadata
   tool for Komga), Benday sends it the series you ask it to identify.</li>
 </ul>
+<p><strong>Sync through your own WebDAV folder (optional).</strong> Off unless you set it
+up in Settings › Sync between devices. Then Benday sends the data it syncs
+— bookmarks of your Kavita, Stump and OPDS servers, and the name you give
+each device — to the WebDAV address you entered (for example your own
+Nextcloud or NAS), and nowhere else; no Benday server or third party is
+involved. Each server's bookmarks are filed under a short code made from
+its address and your username; passwords and API keys are never sent
+there. The WebDAV password is kept in Android's encrypted storage on your
+device and sent only to that address. Stopping sync forgets the address
+and password on the device; the files stay in your folder for you to
+delete.</p>
 <p><strong>Server certificates.</strong> If your server uses a self-signed certificate and
 you choose to trust it, Benday stores its fingerprint on your device so it
 can recognise the same server later.</p>
 <h2>Backups</h2>
-<p>Settings › Backup creates a file with your settings, server addresses,
+<p>Settings › Backup &amp; restore creates a file with your settings, server addresses,
 usernames, reading statistics and history. It does <strong>not</strong> include
 passwords. The file is saved where you choose; we never receive it.</p>
 <h2>Permissions</h2>
 <ul>
-<li><strong>Internet</strong>: to reach your Komga server and any services you connect.</li>
-<li><strong>Notifications</strong>: to show download progress and new books in series you
-  follow.</li>
+<li><strong>Internet</strong>: to reach your server and any services you connect.</li>
+<li><strong>Notifications</strong>: to show download progress and, if you turn them on,
+  new books in series you follow or read.</li>
+<li><strong>Background work</strong>: if you turn on new-book notifications, Android runs
+  a periodic check (every few hours) that asks your saved servers for their
+  newest books. It talks only to those servers, with the sign-in saved on
+  your device, and what it learns stays on your device.</li>
 <li><strong>Foreground service (data sync)</strong>: to keep downloads running while the
   app is in the background.</li>
 <li><strong>Biometrics</strong>: only if you turn on the app lock.</li>
@@ -96,7 +121,7 @@ servers you connect it to.</p>
 <h2>Deleting your data</h2>
 <p>Everything Benday stores is on your device or on your own servers. Clearing
 the app's storage or uninstalling it deletes the data on your device. Data
-on your Komga server is managed by that server; data sent to MangaUpdates is
+on your server is managed by that server; data sent to MangaUpdates is
 managed by MangaUpdates.</p>
 <h2>Changes</h2>
 <p>If this policy changes, the new version will be published at this address
@@ -116,7 +141,7 @@ with a new date.</p>
         <a href="feedback.html">Feedback</a>
         <a href="privacy.html">Privacy</a>
       </nav>
-      <p class="legal">Benday is not affiliated with Komga. Google Play is a trademark of Google LLC.</p>
+      <p class="legal">Benday is not affiliated with Komga, Kavita or the other servers it reads from. Google Play is a trademark of Google LLC.</p>
     </div>
   </footer>
   <script src="config.js"></script>

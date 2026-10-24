@@ -352,6 +352,18 @@ section + section { border-top: 1px solid var(--rule); }
 /* Brick on the mustard wash is too faint (both themes). */
 .callout a { color: var(--ink); }
 
+/* Home: the servers Benday reads from, as a row of chips. */
+.servers-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0 0 1em; }
+.servers-list li {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.servers-list li.full { background: var(--brick-wash); border-color: transparent; }
+
 /* ---------- Docs layout ---------- */
 
 .page-head { padding-block: 48px 32px; border-bottom: 1px solid var(--rule); }
@@ -378,8 +390,60 @@ section + section { border-top: 1px solid var(--rule); }
 .prose th, .prose td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
 .prose th { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
 .table-scroll { overflow-x: auto; }
+/* Long addresses wrap rather than widen a table. */
+.prose td code { overflow-wrap: anywhere; }
+.prose .matrix th[scope='row'] {
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  font-weight: 700;
+}
+.prose .matrix td { color: var(--ink-soft); }
+.prose .matrix .yes { color: var(--ink); }
+.table-note { font-size: 0.9rem; color: var(--ink-soft); }
+/* Phones: each row of a comparison table becomes a card, with the column
+   names (data-label) in front of the values. */
+@media (max-width: 640px) {
+  .prose .matrix, .prose .matrix tbody, .prose .matrix tr,
+  .prose .matrix th, .prose .matrix td { display: block; width: 100%; }
+  .prose .matrix thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .prose .matrix tr {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+  .prose .matrix th[scope='row'] { padding: 2px 0 6px; border: 0; font-size: 1rem; }
+  .prose .matrix td {
+    display: grid;
+    grid-template-columns: 7.5em minmax(0, 1fr);
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .prose .matrix td::before {
+    content: attr(data-label);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 0.15em;
+  }
+}
 @media (max-width: 820px) {
-  .docs { grid-template-columns: 1fr; gap: 24px; }
+  /* minmax(0, …): a wide table scrolls in its box instead of widening the page. */
+  .docs { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .toc { position: static; }
   .toc ol { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }

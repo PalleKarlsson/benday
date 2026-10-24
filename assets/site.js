@@ -139,7 +139,7 @@
     var facts = [
       ['Benday version', value('app')],
       ['Android / device', value('device')],
-      ['Komga version', value('komga')],
+      ['Server / version', value('server')],
     ].filter(function (f) { return f[1]; });
     if (facts.length) {
       lines.push('---');

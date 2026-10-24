@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pallekarlsson.github.io/benday/sitemap.xml
+Sitemap: https://getbenday.com/sitemap.xml

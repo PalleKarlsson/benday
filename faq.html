@@ -4,10 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FAQ · Benday</title>
-  <meta name="description" content="Answers to common questions about Benday, the Android reader for Komga.">
+  <meta name="description" content="Answers to common questions about Benday, the Android comic reader for Komga, Kavita, Stump and OPDS catalogs.">
+  <meta property="og:title" content="FAQ · Benday">
+  <meta property="og:description" content="Answers to common questions about Benday, the Android comic reader for Komga, Kavita, Stump and OPDS catalogs.">
+  <meta property="og:image" content="https://getbenday.com/assets/img/feature-graphic.png">
+  <meta property="og:url" content="https://getbenday.com/faq.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
-  <link rel="canonical" href="https://pallekarlsson.github.io/benday/faq.html">
+  <link rel="canonical" href="https://getbenday.com/faq.html">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -40,7 +46,7 @@
 
         <details>
           <summary>Does Benday come with comics?</summary>
-          <div><p>No. Benday is a reader for <a href="https://komga.org">Komga</a>, a server you run yourself (or that someone shares with you). It shows the comics, manga and webtoons on that server, and files already on your device.</p></div>
+          <div><p>No. Benday is a reader for your own server: <a href="https://komga.org">Komga</a>, <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a> or any OPDS catalog, run by you or someone who shares it with you. It shows the comics, manga and webtoons on that server, and files already on your device.</p></div>
         </details>
 
         <details>
@@ -49,8 +55,8 @@
         </details>
 
         <details>
-          <summary>Is Benday made by the Komga team?</summary>
-          <div><p>No. Benday is an independent app that uses Komga's public API. Questions about the server itself belong with <a href="https://komga.org">Komga</a>; questions about the app, <a href="feedback.html">here</a>.</p></div>
+          <summary>Is Benday made by the Komga, Kavita or Stump team?</summary>
+          <div><p>No. Benday is an independent app that uses the servers' public APIs and OPDS catalogs. Questions about a server itself belong with its makers; questions about the app, <a href="feedback.html">here</a>.</p></div>
         </details>
 
         <details>
@@ -60,26 +66,49 @@
 
         <details>
           <summary>Is there an iPhone or desktop version?</summary>
-          <div><p>Not at the moment: Benday is for Android phones, tablets and Chromebooks. On other devices, Komga's own web reader works in any browser.</p></div>
+          <div><p>Not at the moment: Benday is for Android phones, tablets and Chromebooks. On other devices, your server's own web reader works in any browser.</p></div>
         </details>
 
         <h2 class="faq-group">Setup</h2>
 
         <details>
-          <summary>Which Komga version do I need?</summary>
-          <div><p>A recent Komga 1.x; keeping the server up to date is the safest bet. Signing in with an API key needs Komga 1.15 or newer.</p></div>
+          <summary>Which servers work?</summary>
+          <div><p>Komga, Kavita and Stump (0.1.8 and newer), through their own APIs, and any OPDS 1.2 catalog. Benday knows the extras of Codex, calibre-web, Calibre-Web-Automated, Suwayomi, Grimmory, BookLore, BookOrbit and LANraragi. The guide's <a href="docs.html#servers">Supported servers</a> shows what works on each.</p></div>
         </details>
 
         <details>
-          <summary>It says "Cannot reach server". What now?</summary>
+          <summary>Which Komga, Kavita or Stump version do I need?</summary>
+          <div><p>Komga: a recent 1.x; keeping the server up to date is the safest bet. Signing in with an API key needs Komga 1.15 or newer. Kavita: 0.8.9 or newer for full Kavita mode; an older Kavita works through its OPDS catalog. Stump: 0.1.8 or newer for full Stump mode, and an account with Stump's API keys permission; otherwise Stump works through its OPDS catalog.</p></div>
+        </details>
+
+        <details>
+          <summary>What address do I enter?</summary>
+          <div>
+            <ul>
+              <li><strong>Komga:</strong> the address you open in a browser, such as <code>http://192.168.1.20:25600</code>, with its path if it has one. Your email and password, or an API key.</li>
+              <li><strong>Kavita:</strong> the address you open in a browser, with your username and password or your API key. Benday uses the password once to fetch your API key and keeps only the key.</li>
+              <li><strong>Stump:</strong> the address you open in a browser, with your username and password or a Stump API key. Benday uses the password once to create an API key for this device and keeps only the key. The account needs Stump's API keys permission; without it, use Stump's OPDS catalog (<code>/opds/v1.2/catalog</code>) with the same login.</li>
+              <li><strong>Other servers:</strong> their OPDS catalog's address, with your login on that server (or None for an open catalog). Codex <code>/opds/v1.2/</code>, calibre-web and Calibre-Web-Automated <code>/opds</code>, Suwayomi <code>/api/opds/v1.2</code>, Grimmory, BookLore and BookOrbit <code>/api/v1/opds</code>, LANraragi <code>/api/opds</code>, each after the server's address.</li>
+            </ul>
+            <p>The guide's <a href="docs.html#signing-in">Signing in</a> has the details.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>It says "Can't reach the server". What now?</summary>
           <div>
             <p>Open the same address in your phone's browser. If that fails too, the phone can't reach the server:</p>
             <ul>
-              <li>At home: is the phone on the same Wi-Fi? Is the port right (Komga's default is 25600)?</li>
+              <li>At home: is the phone on the same Wi-Fi? Is the port right (Komga's default is 25600, Kavita's 5000, Stump's 10801)?</li>
               <li>Away from home: is the server published through a reverse proxy, or is your VPN on?</li>
               <li><code>localhost</code> or <code>127.0.0.1</code> mean the phone itself. Use the server's network address.</li>
             </ul>
           </div>
+        </details>
+
+        <details>
+          <summary>I use one address at home and another away. Do I need two servers in Benday?</summary>
+          <div><p>No. Edit the server in Settings › Servers and add the other one as its <strong>Away address</strong>. Benday uses whichever answers, tries the home one first on Wi-Fi, and switches by itself when you leave or come home. Downloads and progress stay the same. See <a href="docs.html#home-and-away">Home and away addresses</a>.</p></div>
         </details>
 
         <details>
@@ -93,30 +122,64 @@
         </details>
 
         <details>
-          <summary>I use single sign-on (Authelia, Authentik…) in front of Komga.</summary>
-          <div><p>Benday talks to Komga's API and can't fill in a login page. Let the API through your proxy without SSO (Komga still checks the password or API key), or connect over your VPN to Komga directly. If Benday says the address "doesn't look like a Komga server", a login page is in the way.</p></div>
+          <summary>I use single sign-on (Authelia, Authentik…) in front of my server.</summary>
+          <div><p>Benday talks to the server's API or OPDS catalog and can't fill in a login page. Let the API or catalog through your proxy without SSO (the server still checks the password or API key), or connect over your VPN to the server directly. If Benday says the address isn't "a server Benday supports or an OPDS catalog", a login page is in the way.</p></div>
+        </details>
+
+        <h2 class="faq-group">OPDS catalogs</h2>
+
+        <details>
+          <summary>What works on an OPDS catalog, and what doesn't?</summary>
+          <div>
+            <p>On every catalog: browsing the catalog as the server arranges it, its search and filters where it has them, reading, downloads, pinning catalog pages to Home, Continue reading, and progress saved on the device.</p>
+            <p>Depending on the server: page streaming (otherwise a book opens once it's downloaded), progress sent to the server, and books you finished elsewhere showing as read. Benday knows how for Codex, Suwayomi, LANraragi, calibre-web, Calibre-Web-Automated, Grimmory, BookLore, BookOrbit, and Komga, Kavita and Stump over OPDS; the <a href="docs.html#servers">server table</a> has the details.</p>
+            <p>Not on OPDS: Benday's own library filters, collections and read lists (unless the catalog lists them as pages), live updates when books are added, bookmarks and settings synced between devices, MangaUpdates tracking, and the Komga extras (Want to read, Upcoming, Discover, metadata editing).</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>My server is Komga, Kavita or Stump, but I added its OPDS catalog.</summary>
+          <div><p>Benday notices, and Home offers to switch to full Komga, Kavita or Stump mode, which has much more (Kavita needs 0.8.9 or newer, Stump 0.1.8 or newer). Books you downloaded through the catalog stay readable under Downloads.</p></div>
+        </details>
+
+        <details>
+          <summary>How do I set up KOReader sync?</summary>
+          <div>
+            <p>Calibre-Web-Automated, Grimmory, BookLore and BookOrbit take reading progress through their KOReader sync server. Switch it on there first: on Calibre-Web-Automated the admin turns it on for the server; on Grimmory, BookLore and BookOrbit each user turns it on in their KOReader settings.</p>
+            <p>Benday signs in with the catalog's username and password. If your KOReader login on Grimmory, BookLore or BookOrbit is a different one, open Manage servers (Settings › Servers), edit the catalog, choose <strong>KOReader sync</strong>, enter that login and press <strong>Test</strong>. More in the <a href="docs.html#koreader-sync">guide</a>.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Why does progress only sync for downloaded books?</summary>
+          <div><p>KOReader sync doesn't know books by title or id but by a fingerprint of the file, the same file KOReader would have. Benday can only compute that from the server's own file, downloaded whole. On these servers books are downloaded before they open anyway; if you remove a download, that book's progress stays on the device until you download it again.</p></div>
+        </details>
+
+        <details>
+          <summary>The book sheet says progress is saved on this device.</summary>
+          <div><p>The server takes no progress from Benday: a plain OPDS catalog, calibre-web, LANraragi with progress kept in the browser, or KOReader sync that is switched off or doesn't accept the login. Your progress is safe on the device. On calibre-web, books you mark read there still show as read in Benday.</p></div>
         </details>
 
         <h2 class="faq-group">Reading</h2>
 
         <details>
           <summary>Which formats can Benday read?</summary>
-          <div><p>Everything Komga serves: CBZ, CBR, PDF and EPUB (comics and novels). Files on your device can be CBZ, CBR or PDF.</p></div>
+          <div><p>CBZ, CBR (except RAR5 archives: convert those to CBZ), PDF, and EPUB and KEPUB (comics and novels). Files on your device can be CBZ, CBR or PDF.</p></div>
         </details>
 
         <details>
           <summary>A manga opens left to right. How do I change it?</summary>
-          <div><p>Pick right to left from the reader's toolbar; Benday remembers it for that series on all your devices. To fix it for everyone, set the series' reading direction in Komga.</p></div>
+          <div><p>Pick right to left from the reader's toolbar; Benday remembers it for that series (on all your devices, with Komga). To fix it for everyone, set the series' reading direction in Komga, a reading profile in Kavita, or the library's reading settings in Stump.</p></div>
         </details>
 
         <details>
-          <summary>Does my progress sync with Komga's web reader and other apps?</summary>
-          <div><p>Yes. Benday saves progress to Komga, so the web reader and other Komga apps see it. Bookmarks, ratings and per-series settings sync between your Benday devices.</p></div>
+          <summary>Does my progress sync with the server's web reader and other apps?</summary>
+          <div><p>On Komga, Kavita and Stump, yes: Benday saves progress to the server, so its web reader and other apps see it. On Komga, bookmarks, ratings and per-series settings also sync between your Benday devices. On OPDS catalogs it depends on the server; see the next questions.</p></div>
         </details>
 
         <details>
           <summary>How do I read without updating my progress?</summary>
-          <div><p>Turn on Incognito, in the menu at the top of Home or in Settings. Until you turn it off, nothing is recorded: no progress, history or statistics.</p></div>
+          <div><p>Turn on Incognito mode in the menu at the top of Home, or Incognito in Settings. Until you turn it off, nothing is recorded: no progress, history or statistics.</p></div>
         </details>
 
         <h2 class="faq-group">Downloads</h2>
@@ -135,7 +198,7 @@
 
         <details>
           <summary>What data does Benday collect?</summary>
-          <div><p>None for us. There are no accounts, analytics or crash reports. Your data goes only to your Komga server and to services you connect yourself. The <a href="privacy.html">privacy policy</a> has the details.</p></div>
+          <div><p>None for us. There are no accounts, analytics or crash reports. Your data goes only to your server and to services you connect yourself. The <a href="privacy.html">privacy policy</a> has the details.</p></div>
         </details>
 
         <details>
@@ -147,7 +210,7 @@
 
         <details>
           <summary>I found a bug or have an idea.</summary>
-          <div><p>Post it on the <a href="feedback.html">feedback page</a>. Bug reports help most with the app version (Settings › About), your Android version and device, and the steps that lead to the problem.</p></div>
+          <div><p>Post it on the <a href="feedback.html">feedback page</a>. Bug reports help most with the app version (Settings › About Benday), your Android version and device, and the steps that lead to the problem.</p></div>
         </details>
       </div>
     </div>
@@ -163,7 +226,7 @@
         <a href="feedback.html">Feedback</a>
         <a href="privacy.html">Privacy</a>
       </nav>
-      <p class="legal">Benday is not affiliated with Komga. Google Play is a trademark of Google LLC.</p>
+      <p class="legal">Benday is not affiliated with Komga, Kavita or the other servers it reads from. Google Play is a trademark of Google LLC.</p>
     </div>
   </footer>
   <script src="config.js"></script>

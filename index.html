@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Benday: comics from your Komga server</title>
-  <meta name="description" content="Benday is an Android reader for Komga: comics, manga and webtoons from your own server, online or offline. No accounts, ads or analytics.">
+  <title>Benday: comics from your own server</title>
+  <meta name="description" content="Benday is an Android reader for Komga, Kavita, Stump and OPDS catalogs: comics, manga and webtoons from your own server, online or offline. No accounts, ads or analytics.">
   <meta property="og:title" content="Benday">
-  <meta property="og:description" content="Comics, manga and webtoons from your own Komga server, on your Android phone or tablet.">
-  <meta property="og:image" content="https://pallekarlsson.github.io/benday/assets/img/feature-graphic.png">
-  <meta property="og:url" content="https://pallekarlsson.github.io/benday/">
+  <meta property="og:description" content="Comics, manga and webtoons from your own Komga, Kavita, Stump or OPDS server, on your Android phone or tablet.">
+  <meta property="og:image" content="https://getbenday.com/assets/img/feature-graphic.png">
+  <meta property="og:url" content="https://getbenday.com/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
-  <link rel="canonical" href="https://pallekarlsson.github.io/benday/">
+  <link rel="canonical" href="https://getbenday.com/">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/style.css">
@@ -38,8 +38,8 @@
         <img class="hero-icon" src="assets/img/icon-512.webp" alt="The Benday app icon: a speech bubble with a B on a halftone background" width="220" height="220">
         <div>
           <h1>Benday</h1>
-          <p class="tagline">Comics from your Komga server</p>
-          <p class="lede">A reader for Android phones and tablets. Point it at your Komga server and your whole library of comics, manga and webtoons comes along, online or offline.</p>
+          <p class="tagline">Comics from your own server</p>
+          <p class="lede">A reader for Android phones and tablets. Point it at your Komga, Kavita or Stump server, or an OPDS catalog, and your whole library of comics, manga and webtoons comes along, online or offline.</p>
           <div class="actions">
             <a class="btn btn-primary" data-play href="#">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
@@ -47,7 +47,7 @@
             </a>
             <a class="btn btn-ghost" href="docs.html#getting-started">How to get started</a>
           </div>
-          <p class="note">A one-time purchase: no ads or subscriptions. Needs a <a href="https://komga.org">Komga</a> server you run or can sign in to.</p>
+          <p class="note">A one-time purchase: no ads or subscriptions. Needs a <a href="https://komga.org">Komga</a>, <a href="https://www.kavitareader.com">Kavita</a> or <a href="https://www.stumpapp.dev">Stump</a> server or an OPDS catalog you run or can sign in to.</p>
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@
       <div class="wrap">
         <div class="shots">
           <figure>
-            <img src="assets/img/screen-home.webp" alt="Benday's Home screen: Continue Reading and New Books shelves with comic covers" width="480" height="751">
+            <img src="assets/img/screen-home.webp" alt="Benday's Home screen: Continue reading and New books shelves with comic covers" width="480" height="751">
             <figcaption>Home: pick up where you left off</figcaption>
           </figure>
           <figure>
@@ -111,10 +111,42 @@
     <section>
       <div class="wrap split">
         <div>
+          <p class="kicker">Servers</p>
+          <h2>Your server, whichever it is</h2>
+          <p>Benday speaks Komga, Kavita and Stump natively, with read lists and progress that the server's own reader sees, and collections, live updates and a Want to read list on Komga and Kavita. On Kavita a series' books are grouped by volume, then loose chapters and specials. Komga gets the most: Upcoming, Discover, metadata editing and Komf. An older Stump, or an account without Stump's API keys permission, works through Stump's OPDS catalog.</p>
+          <ul class="servers-list" aria-label="Full support">
+            <li class="full">Komga</li>
+            <li class="full">Kavita 0.8.9+</li>
+            <li class="full">Stump 0.1.8+</li>
+          </ul>
+          <p><a href="docs.html#servers">What works on each server</a></p>
+        </div>
+        <div>
+          <p class="kicker">OPDS</p>
+          <h2>And any OPDS catalog</h2>
+          <p>Browse, read and download from any OPDS catalog, with page streaming where the server offers it. For these servers Benday also sends your progress back, through their own APIs or KOReader sync, or brings back what you finished there:</p>
+          <ul class="servers-list" aria-label="OPDS servers Benday knows">
+            <li>Codex</li>
+            <li>Stump</li>
+            <li>Suwayomi</li>
+            <li>LANraragi</li>
+            <li>calibre-web</li>
+            <li>Calibre-Web-Automated</li>
+            <li>Grimmory</li>
+            <li>BookLore</li>
+            <li>BookOrbit</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap split">
+        <div>
           <p class="kicker">Your library</p>
           <h2>Everything on your server, arranged for you</h2>
-          <p>Home is a set of shelves you can reorder: Continue Reading, On Deck, new books, Want to Read, the next books of series still running, and Discover, which suggests unread series like the ones you read and rate highly.</p>
-          <p>Libraries, collections and read lists all work as on the server, with search and filters, and two panes side by side on tablets. Progress, bookmarks, ratings and reader settings go through your Komga account, so every device picks up where the last one stopped.</p>
+          <p>Home is a set of shelves you can reorder: Continue reading, On deck and new books, Want to read on Komga and Kavita, and on Komga also the next books of series still running, and Discover, which suggests unread series like the ones you read and rate highly.</p>
+          <p>Libraries, collections and read lists all work as on the server, with search and filters, and two panes side by side on tablets. Your progress goes back to Komga, Kavita or Stump (and to many OPDS servers), so every device picks up where the last one stopped; on Komga, bookmarks, ratings and reader settings follow you too.</p>
         </div>
         <div>
           <p class="kicker">Offline</p>
@@ -130,7 +162,7 @@
         <div class="panel">
           <p class="kicker">Privacy</p>
           <h2>Nothing goes to us</h2>
-          <p>Benday has no accounts, ads, analytics or crash reporting. It talks to your Komga server and to the services you connect yourself, and nothing else.</p>
+          <p>Benday has no accounts, ads, analytics or crash reporting. It talks to your server and to the services you connect yourself, and nothing else.</p>
           <p><a href="privacy.html">Read the privacy policy</a></p>
         </div>
         <div class="panel">
@@ -138,8 +170,8 @@
           <h2>The extras</h2>
           <ul>
             <li>Eight looks, each with a light and a dark side</li>
-            <li>Ratings and a Want to Read list</li>
-            <li>MangaUpdates tracking and Komf metadata matching</li>
+            <li>Ratings, and a Want to read list on Komga and Kavita</li>
+            <li>MangaUpdates tracking and Komf metadata matching, on Komga</li>
             <li>App lock, incognito reading, backup and restore</li>
             <li>Reading statistics and history</li>
           </ul>
@@ -171,7 +203,7 @@
         <a href="feedback.html">Feedback</a>
         <a href="privacy.html">Privacy</a>
       </nav>
-      <p class="legal">Benday is not affiliated with Komga. Google Play is a trademark of Google LLC.</p>
+      <p class="legal">Benday is not affiliated with Komga, Kavita or the other servers it reads from. Google Play is a trademark of Google LLC.</p>
     </div>
   </footer>
   <script src="config.js"></script>

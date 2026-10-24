@@ -4,10 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Guide · Benday</title>
-  <meta name="description" content="How to set up Benday with your Komga server, and how reading, downloads, sync and the other features work.">
+  <meta name="description" content="How to set up Benday with your Komga, Kavita or Stump server or an OPDS catalog, what works on each server, and how reading, downloads, sync and the other features work.">
+  <meta property="og:title" content="Guide · Benday">
+  <meta property="og:description" content="How to set up Benday with your Komga, Kavita or Stump server or an OPDS catalog, what works on each server, and how reading, downloads, sync and the other features work.">
+  <meta property="og:image" content="https://getbenday.com/assets/img/feature-graphic.png">
+  <meta property="og:url" content="https://getbenday.com/docs.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#e9dcbb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1e2631" media="(prefers-color-scheme: dark)">
-  <link rel="canonical" href="https://pallekarlsson.github.io/benday/docs.html">
+  <link rel="canonical" href="https://getbenday.com/docs.html">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -39,11 +45,14 @@
         <p>On this page</p>
         <ol>
           <li><a href="#getting-started">Getting started</a></li>
+          <li><a href="#servers">Supported servers</a></li>
           <li><a href="#signing-in">Signing in</a></li>
+          <li><a href="#koreader-sync">KOReader sync</a></li>
           <li><a href="#library">Home and library</a></li>
           <li><a href="#reading">Reading</a></li>
           <li><a href="#display">Display settings</a></li>
           <li><a href="#offline">Downloads and offline</a></li>
+          <li><a href="#new-books">New-book notifications</a></li>
           <li><a href="#sync">Sync between devices</a></li>
           <li><a href="#ratings">Ratings and Discover</a></li>
           <li><a href="#tracking">Tracking and Komf</a></li>
@@ -56,30 +65,119 @@
 
       <article class="prose">
         <h2 id="getting-started">Getting started</h2>
-        <p>Benday reads from <a href="https://komga.org">Komga</a>, a free server for comics, manga and webtoons that you install on a computer, NAS or home server. Benday doesn't come with any comics: it shows what's on your server.</p>
+        <p>Benday reads from a server you run yourself, on a computer, NAS or home server: <a href="https://komga.org">Komga</a>, <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>, or any server with an OPDS catalog, such as Codex, calibre-web, Suwayomi or LANraragi. Benday doesn't come with any comics: it shows what's on your server.</p>
         <ol class="steps">
-          <li><div><strong>Have a Komga server.</strong> Your own, or one a friend shares with you. Follow Komga's <a href="https://komga.org/docs/category/installation">installation guide</a> and add a library.</div></li>
+          <li><div><strong>Have a server.</strong> Your own, or one a friend shares with you. New to this? Komga is a good start for comics and manga: follow its <a href="https://komga.org/docs/category/installation">installation guide</a> and add a library. <a href="#servers">Supported servers</a> lists what works where.</div></li>
           <li><div><strong>Install Benday</strong> from Google Play on your Android phone or tablet (Android 7 or newer).</div></li>
-          <li><div><strong>Sign in</strong> with the server's address and your Komga account. See <a href="#signing-in">Signing in</a>.</div></li>
-          <li><div><strong>Start reading.</strong> Your libraries appear under Libraries; anything you've started shows on Home.</div></li>
+          <li><div><strong>Sign in</strong> with the server's address, or the catalog's OPDS address, and your account. See <a href="#signing-in">Signing in</a>.</div></li>
+          <li><div><strong>Start reading.</strong> Your libraries appear under Libraries (on an OPDS catalog, the catalog itself); anything you've started shows on Home.</div></li>
         </ol>
 
+        <h2 id="servers">Supported servers</h2>
+        <p>Benday speaks <strong>Komga</strong>, <strong>Kavita</strong> and <strong>Stump</strong> natively, through their own APIs, and reads from <strong>OPDS catalogs</strong>, the common feed format many servers offer. With Komga you get everything Benday does; with Kavita nearly all of it; with Stump the library, smart lists and progress; OPDS catalogs give you browsing, reading and downloads, and how much reaches the server depends on the server.</p>
+        <h3>Komga, Kavita, Stump and OPDS</h3>
+        <div class="table-scroll">
+          <table class="matrix">
+            <thead><tr><th scope="col">Feature</th><th scope="col">Komga</th><th scope="col">Kavita 0.8.9+</th><th scope="col">Stump 0.1.8+</th><th scope="col">OPDS catalog</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Browse, search and read</th><td data-label="Komga" class="yes">Yes</td><td data-label="Kavita" class="yes">Yes</td><td data-label="Stump" class="yes">Yes</td><td data-label="OPDS" class="yes">Yes, through the catalog's own pages and search</td></tr>
+              <tr><th scope="row">Home</th><td data-label="Komga">Continue reading, On deck, new books, Want to read, Upcoming, Discover</td><td data-label="Kavita">Continue reading, On deck, new books, Want to read (Kavita's own list)</td><td data-label="Stump">Continue reading, On deck, new books and new series</td><td data-label="OPDS">Continue reading and the catalog pages you pin</td></tr>
+              <tr><th scope="row">Filters and sorting</th><td data-label="Komga" class="yes">Benday's: read status, genre, tag, publisher, age rating and more</td><td data-label="Kavita" class="yes">Benday's, mapped to Kavita's</td><td data-label="Stump">Read status; publisher, age rating and status for series with a series.json; no genre, tag or language filters</td><td data-label="OPDS">The catalog's own, where it offers some</td></tr>
+              <tr><th scope="row">Collections and read lists</th><td data-label="Komga" class="yes">Yes; add to them and reorder them</td><td data-label="Kavita" class="yes">Collections and reading lists</td><td data-label="Stump">Stump's smart lists as read lists, read-only (they need Stump's smart-list permission); no collections</td><td data-label="OPDS">When the catalog lists them as pages</td></tr>
+              <tr><th scope="row">Page streaming</th><td data-label="Komga" class="yes">Yes, EPUB too</td><td data-label="Kavita" class="yes">Yes; EPUBs are downloaded first</td><td data-label="Stump" class="yes">Yes, EPUB too</td><td data-label="OPDS">Where the catalog streams pages (OPDS-PSE); otherwise the book opens once it's downloaded</td></tr>
+              <tr><th scope="row">Downloads</th><td data-label="Komga" class="yes">Yes</td><td data-label="Kavita" class="yes">Yes: the file with Kavita's Download role, otherwise page by page (EPUBs need the role)</td><td data-label="Stump" class="yes">Yes: the file as the server owner or with Stump's Download files permission, otherwise page by page (EPUBs then stream)</td><td data-label="OPDS" class="yes">Yes, the server's file</td></tr>
+              <tr><th scope="row">Progress on the server</th><td data-label="Komga" class="yes">Komga's own, seen by its web reader and other apps</td><td data-label="Kavita" class="yes">Kavita's own, seen by its web reader</td><td data-label="Stump" class="yes">Stump's own, seen by its web reader</td><td data-label="OPDS">Depends on the server (below)</td></tr>
+              <tr><th scope="row">Live updates</th><td data-label="Komga" class="yes">Yes</td><td data-label="Kavita" class="yes">Yes</td><td data-label="Stump">No; pull down to refresh</td><td data-label="OPDS">No; pull down to refresh</td></tr>
+              <tr><th scope="row">Bookmarks, ratings, per-series settings</th><td data-label="Komga" class="yes">Synced between devices through your account</td><td data-label="Kavita">Kept on each device</td><td data-label="Stump">Kept on each device</td><td data-label="OPDS">Kept on each device</td></tr>
+              <tr><th scope="row">MangaUpdates tracking</th><td data-label="Komga" class="yes">Yes</td><td data-label="Kavita">No</td><td data-label="Stump">No</td><td data-label="OPDS">No</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Only on Komga: Upcoming and Discover, ratings synced between devices, editing metadata and covers, Komf, library scans and other admin tasks, auto-downloading new books of a series, and syncing the app's look and settings through your account.</p>
+
+        <h3>OPDS catalogs</h3>
+        <p>On every OPDS catalog you can browse, search where the catalog offers it, read, pin catalog pages to Home and download books. Progress is always saved on the device; for the servers below, Benday also knows how to send it to the server, or to bring back what you finished elsewhere.</p>
+        <div class="table-scroll">
+          <table class="matrix">
+            <thead><tr><th scope="col">Server</th><th scope="col">Pages</th><th scope="col">Progress to the server</th><th scope="col">Read marks from the server</th><th scope="col">Also</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Codex</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress" class="yes">Yes, Codex's own</td><td data-label="Read marks" class="yes">Yes, and resumes at Codex's page</td><td data-label="Also">Its sort options as filters</td></tr>
+              <tr><th scope="row">Stump (OPDS)</th><td data-label="Pages" class="yes">Streamed (EPUBs downloaded)</td><td data-label="Progress" class="yes">Yes, Stump's own</td><td data-label="Read marks">Resumes at Stump's page</td><td data-label="Also">Offers to switch to full Stump mode (0.1.8 and newer)</td></tr>
+              <tr><th scope="row">Suwayomi</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress" class="yes">Yes, Suwayomi's own</td><td data-label="Read marks" class="yes">Yes</td><td data-label="Also">Works with each of Suwayomi's login modes</td></tr>
+              <tr><th scope="row">LANraragi</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress" class="yes">Yes, when LANraragi keeps progress on the server</td><td data-label="Read marks" class="yes">Yes</td><td data-label="Also">Categories as filters; its API key for No-Fun Mode or for progress</td></tr>
+              <tr><th scope="row">calibre-web</th><td data-label="Pages">Downloaded, then read</td><td data-label="Progress">No, on the device only</td><td data-label="Read marks" class="yes">Yes, from your read books</td><td data-label="Also">—</td></tr>
+              <tr><th scope="row">Calibre-Web-Automated, Calibre-Web NextGen</th><td data-label="Pages">Downloaded, then read</td><td data-label="Progress" class="yes">Through its KOReader sync, for downloaded books</td><td data-label="Read marks" class="yes">Yes</td><td data-label="Also">The admin switches KOReader sync on</td></tr>
+              <tr><th scope="row">Grimmory, BookLore</th><td data-label="Pages">Downloaded, then read</td><td data-label="Progress" class="yes">Through KOReader sync, for downloaded books</td><td data-label="Read marks" class="yes">Yes, from KOReader sync</td><td data-label="Also">A KOReader login of its own if needed</td></tr>
+              <tr><th scope="row">BookOrbit</th><td data-label="Pages">Downloaded, then read</td><td data-label="Progress" class="yes">Through KOReader sync, for downloaded books</td><td data-label="Read marks" class="yes">Yes, from KOReader sync</td><td data-label="Also">A KOReader login of its own if needed</td></tr>
+              <tr><th scope="row">Kavita (OPDS)</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress" class="yes">Yes, Kavita's own (Kavita 0.8 and newer)</td><td data-label="Read marks">Resumes at Kavita's page</td><td data-label="Also">Offers to switch to full Kavita mode (0.8.9 and newer)</td></tr>
+              <tr><th scope="row">Komga (OPDS)</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress" class="yes">Yes, Komga's own</td><td data-label="Read marks">Resumes at Komga's page</td><td data-label="Also">Offers to switch to full Komga mode</td></tr>
+              <tr><th scope="row">Any other OPDS catalog</th><td data-label="Pages">Streamed where it offers OPDS-PSE, otherwise downloaded</td><td data-label="Progress">Yes if the catalog offers OPDS Progression, otherwise on the device only</td><td data-label="Read marks">Yes with OPDS Progression, otherwise resumes at the page the catalog reports, if it does</td><td data-label="Also">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">"Read marks" are books the server says you finished, in its own reader or another app; Benday shows them as read. It checks on signing in and when you pull down on Home, at most every ten minutes, and never un-reads a book you read in Benday. OPDS here means OPDS 1.2 catalogs; KOReader sync is explained <a href="#koreader-sync">below</a>.</p>
+
+        <h3>Formats</h3>
+        <ul>
+          <li><strong>CBZ</strong> and ZIP archives of images.</li>
+          <li><strong>CBR</strong> and RAR archives, except RAR5 ones: convert those to CBZ.</li>
+          <li><strong>PDF</strong>, page by page.</li>
+          <li><strong>EPUB</strong>, comics and novels, and <strong>KEPUB</strong> (Kobo's EPUB), read as EPUB.</li>
+        </ul>
+        <p>Files on your device can be CBZ, CBR or PDF.</p>
+
         <h2 id="signing-in">Signing in</h2>
-        <h3>Server address</h3>
+        <p>The sign-in screen takes a server address or an OPDS catalog address, and finds out by itself what kind of server it is.</p>
+        <h3>Komga</h3>
         <p>Enter the address you use to open Komga in a browser, for example <code>http://192.168.1.20:25600</code> on your home network or <code>https://comics.example.com</code> from anywhere. If Komga runs under a path (<code>https://example.com/komga</code>), include it.</p>
-        <p>To read away from home, the server must be reachable from outside: through a reverse proxy with HTTPS, or a VPN such as WireGuard or Tailscale. Downloaded books work without any connection.</p>
-        <h3>Password or API key</h3>
         <p>Sign in with your Komga email and password, or switch the sign-in form to <strong>API key</strong> and paste a key instead (Komga 1.15 or newer). Create one in Komga under Account settings, or once signed in under Settings › API keys. An API key can be revoked on its own without changing your password, and it works for accounts that sign in through single sign-on.</p>
+        <h3>Kavita</h3>
+        <p>Enter Kavita's address, the one you open in a browser (<code>http://192.168.1.20:5000</code>, for example), and sign in with your Kavita username and password, or choose <strong>API key</strong> and paste the key from your Kavita account settings. With a password, Benday uses it once to fetch your account's API key and keeps only the key. Pasting your Kavita OPDS address (<code>…/api/opds/&lt;key&gt;</code>) works too. Full Kavita mode needs Kavita 0.8.9 or newer; an older Kavita works as an OPDS catalog.</p>
+        <h3>Stump</h3>
+        <p>Enter Stump's address, the one you open in a browser (<code>http://192.168.1.20:10801</code>, for example), and sign in with your Stump username and password, or choose <strong>API key</strong> and paste a Stump API key. With a password, Benday uses it once to create an API key for this device, listed as "Benday (…)" in Stump's settings, and keeps only the key. Pasting your Stump OPDS address works too. Full Stump mode needs Stump 0.1.8 or newer.</p>
+        <p>The account needs Stump's <strong>API keys</strong> permission, or must be the server owner; new Stump users have no permissions until the owner grants them. Without it, Benday says so, and Stump's OPDS catalog still works with the same username and password. An older Stump works as an OPDS catalog.</p>
+        <h3>OPDS catalogs</h3>
+        <p>Enter the address of the catalog itself, not the server's web page, and sign in with your account on that server, or choose <strong>None</strong> for an open catalog. Where each server keeps its catalog:</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Server</th><th>Catalog address</th></tr></thead>
+            <tbody>
+              <tr><td>Codex</td><td><code>https://server/opds/v1.2/</code></td></tr>
+              <tr><td>Stump</td><td><code>https://server/opds/v1.2/catalog</code>, or <code>…/opds/&lt;api key&gt;/v1.2/catalog</code> with sign-in None; on 0.1.8 and newer, Benday signs in to full Stump mode when the account may use API keys</td></tr>
+              <tr><td>calibre-web, Calibre-Web-Automated, Calibre-Web NextGen</td><td><code>https://server/opds</code></td></tr>
+              <tr><td>Suwayomi</td><td><code>https://server/api/opds/v1.2</code></td></tr>
+              <tr><td>Grimmory, BookLore, BookOrbit</td><td><code>https://server/api/v1/opds</code></td></tr>
+              <tr><td>LANraragi</td><td><code>https://server/api/opds</code> with sign-in None, or <strong>API key</strong> with LANraragi's key (No-Fun Mode)</td></tr>
+              <tr><td>Kavita</td><td><code>https://server/api/opds/&lt;api key&gt;</code></td></tr>
+              <tr><td>Komga</td><td><code>https://server/opds/v1.2/catalog</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>If the server runs under a path, keep it in front (<code>https://example.com/calibre/opds</code>). Grimmory and BookLore also have a Komga-compatible address, but it is read-only: Benday points you to their OPDS catalog instead, which takes the same login. A Komga, Kavita or Stump catalog shows a banner on Home offering to switch to full mode; books you downloaded through the catalog stay readable under Downloads.</p>
         <h3>HTTPS and self-signed certificates</h3>
+        <p>To read away from home, the server must be reachable from outside: through a reverse proxy with HTTPS, or a VPN such as WireGuard or Tailscale. Downloaded books work without any connection.</p>
         <p>Servers with a normal certificate (Let's Encrypt, for example) just work. If your server uses a <strong>self-signed certificate</strong>, Benday shows the certificate's details and fingerprint and asks whether to trust it. Only trust it if it's your server: Benday then remembers that certificate for that address and warns you if it ever changes.</p>
+        <h3 id="home-and-away">Home and away addresses</h3>
+        <p>A server you reach at one address at home (<code>http://192.168.1.20:25600</code>) and another one elsewhere (<code>https://comics.example.com</code>, or a Tailscale name) can keep both. In Settings › Servers, edit the server and fill in <strong>Away address</strong>. Benday then picks the one that answers: on Wi-Fi it tries the home address first, on mobile data the away one, and if the first doesn't answer it uses the other within a fraction of a second. When the network changes, or you come back to the app, it checks again and switches by itself. The server's row shows <strong>Home</strong> or <strong>Away</strong> for the address in use.</p>
+        <p>It is the same server and account either way: downloads, reading progress, lists and bookmarks stay as they are. Each address keeps its own http or https, and a self-signed certificate is trusted per address.</p>
         <h3>Several servers</h3>
-        <p>Settings › Servers keeps more than one server; switch between them there. Tracker links are kept per server.</p>
+        <p>Settings › Servers keeps more than one server, of any kind; switch between them there. Tracker links are kept per server.</p>
+
+        <h2 id="koreader-sync">KOReader sync</h2>
+        <p>Calibre-Web-Automated, Calibre-Web NextGen, Grimmory, BookLore and BookOrbit don't take reading progress over OPDS, but they all run a KOReader sync server, the one the KOReader e-reader app uses. Benday sends your position there, so the server's own reader and KOReader see it, and brings back the books you finished there.</p>
+        <ul>
+          <li><strong>Switch it on on the server.</strong> On Calibre-Web-Automated and Calibre-Web NextGen the admin turns KOReader sync on for the server. On Grimmory, BookLore and BookOrbit each user turns it on in their KOReader settings, and sets a KOReader username and password there.</li>
+          <li><strong>The login.</strong> Benday tries the catalog's username and password first. If your KOReader login on Grimmory, BookLore or BookOrbit is a different one, open Manage servers (Settings › Servers), edit the catalog and choose <strong>KOReader sync</strong>: enter that login and press <strong>Test</strong>. Leave it empty to use the catalog's. Calibre-Web-Automated and Calibre-Web NextGen always use the catalog's login.</li>
+          <li><strong>Downloaded books only.</strong> KOReader sync recognises a book by a fingerprint of the server's file, not by its title, so Benday needs the downloaded file to match it. These servers don't stream pages, so their books are downloaded before they open anyway; if you remove a download, that book's progress stays on the device until you download it again.</li>
+        </ul>
+        <p>If the server turns the login away or sync is off, Benday says so on the book's sheet and keeps your progress on the device.</p>
 
         <h2 id="library">Home and library</h2>
-        <p><strong>Home</strong> is a column of shelves: Continue Reading, On Deck (the next book of series you're reading), new books, Want to Read, Upcoming (the next book of series still running, with an estimated date) and Discover. Drag shelves to reorder or hide them. To add your own, filter a library and choose <em>Save as Home shelf</em>.</p>
-        <p><strong>Updates</strong> (See all on the New Books shelf) lists new books by day and series and marks the ones added since you last looked; the filter button narrows it to series you're reading.</p>
-        <p><strong>Libraries, Collections and Read Lists</strong> mirror your server, with search, filters (read status, genre, publisher, age rating and more) and sorting. On tablets, lists and details sit side by side.</p>
-        <p>Long-press a book or series for quick actions: mark read or unread, download, add to a collection or read list, or open the series.</p>
+        <p><strong>Home</strong> is a column of shelves: Continue reading, On deck (the next book of series you're reading), new books, Recently added, Reading lists and Want to read (Komga and Kavita), plus Upcoming (the next book of series still running, with an estimated date) and Discover on Komga. Reorder or hide them in Settings › Home shelves. To add your own, filter a library and choose <em>Save as Home shelf</em>.</p>
+        <p><strong>Updates</strong> (See all on the New books shelf) lists new books by day and series and marks the ones added since you last looked; the filter button narrows it to series you're reading.</p>
+        <p><strong>Libraries, Collections and Read lists</strong> mirror your Komga, Kavita or Stump server (on Stump, its smart lists are the read lists), with search, filters (read status, genre, publisher, age rating and more) and sorting. On Kavita, a series' books are grouped under headers: each volume, then chapters outside a volume, then specials. Tap a header to fold it away, or use its menu to mark the whole volume read or unread. On tablets, lists and details sit side by side.</p>
+        <p>On an <strong>OPDS catalog</strong>, Benday shows the catalog as the server arranges it, with its search and filters where it has them. Pin any page of the catalog to Home; Continue reading sits above the pins.</p>
+        <p>Long-press a book or series for quick actions: mark read or unread, download or open the series, and on Komga add to a read list (or a collection, for admins).</p>
 
         <h2 id="reading">Reading</h2>
         <h3>Reading modes</h3>
@@ -94,50 +192,69 @@
             </tbody>
           </table>
         </div>
-        <p>Benday uses the series' reading direction from Komga, and guesses webtoon from very tall pages. Change it from the reader's toolbar for this series only, or set a default in Settings › Reader.</p>
+        <p>Benday uses the series' reading direction from the server (Komga's reading direction, Kavita's reading profile, the Stump library's reading settings), and guesses webtoon from very tall pages. Change it from the reader's toolbar for this series only, or set a default in Settings › Reader.</p>
         <h3>Turning pages</h3>
         <p>Tap the left or right edge, swipe, or use the volume keys (Settings › Reader › Tap zones and volume keys). Keyboards and Bluetooth page turners work too: arrow keys, Page Up/Down and space. With a Samsung S Pen, press the button for the next page, double-press for the previous one, or swipe the pen left or right (Air actions; remap them in Android Settings › Advanced features › S Pen). Tap the middle of the page to show the toolbar and the page slider.</p>
         <h3>Spreads and wide pages</h3>
         <p>In landscape, and on tablets, Benday can show two pages side by side. If a spread starts on the wrong page, shift it by one. In portrait, wide double pages can be split into two pages or turned sideways.</p>
         <h3>Guided view</h3>
-        <p>Guided view moves panel by panel, which suits phones. Turn it on from the reader's toolbar. If it gets the panels of a page wrong, report it from the page's menu (long-press the page).</p>
+        <p>Guided view moves panel by panel, which suits phones. Turn it on from the reader's toolbar.</p>
         <h3>Bookmarks and page actions</h3>
         <p>Bookmark a page from the toolbar; all bookmarks of a book are listed in the bookmarks sheet. Long-press a page to save or share it, or (as a Komga admin) make it the book's or series' cover.</p>
+        <h3 id="epub">EPUB books</h3>
+        <p>Novels and other EPUBs scroll chapter by chapter. The <strong>Aa</strong> button opens the text settings: text size, line spacing, side margins, font, alignment and the page's colours (auto, light, sepia or dark). They apply to every EPUB you read on this device, streamed or downloaded.</p>
+        <ul>
+          <li><strong>Font:</strong> the book's own (<em>Publisher's font</em>, where you start), the system's serif or sans, or one of the fonts that come with Benday: Literata, Atkinson Hyperlegible (made for low vision), OpenDyslexic and a monospace font.</li>
+          <li><strong>Alignment:</strong> <em>Original</em> keeps the book's, <em>Left</em> sets ragged lines, <em>Justified</em> lines up both edges and hyphenates words in the book's language.</li>
+          <li><strong>Search in book</strong> (the magnifier) finds a word or phrase in every chapter and lists the matches with the text around them, chapter by chapter, as they come. Tap one to jump there; the match is marked on the page. A streamed book's chapters are fetched from the server once, so the first search takes longest; a downloaded book is searched on the device, also offline.</li>
+        </ul>
 
         <h2 id="display">Display settings</h2>
-        <p>The gear in the reader opens the display settings: page fit, zoom, background, brightness, contrast, saturation, colour filters, sharpening, and webtoon side padding and gaps. Choose whether changes apply to <strong>this series only</strong> or to every series; per-series settings follow you to your other devices.</p>
-        <p>Settings › Look changes the whole app's look: eight styles, each with a light and dark side, following the system's dark mode or set by hand.</p>
+        <p>The Reader settings button (the sliders) in the reader's toolbar opens the display settings: page fit, zoom, crop borders, background, brightness, contrast, saturation, colour filters, sharpening, and in webtoon mode side padding, gaps and auto-scroll speed. Choose whether changes apply to <strong>this series only</strong> or to every series; on Komga, per-series settings follow you to your other devices.</p>
+        <p>Settings › Look changes the whole app's look: eight styles, each with a light and dark side, following the system's dark mode or set by hand. On an e-ink screen, turn on Settings › E-ink mode: black on white, no animations and instant page turns.</p>
 
         <h2 id="offline">Downloads and offline</h2>
         <ul>
-          <li><strong>Download</strong> a book, a whole series, a collection or a read list from its menu. Downloads continue in the background, with a progress notification.</li>
-          <li><strong>Books to keep ready:</strong> Benday can keep the next books of the series you're reading downloaded, so the next one is always there.</li>
-          <li><strong>Auto-download new books</strong> of a series when they arrive on the server.</li>
-          <li><strong>Wi-Fi only</strong> and a <strong>storage limit</strong> (Settings › Downloads). Over the limit, the oldest books you've finished are removed first.</li>
+          <li><strong>Download</strong> a book, a whole series, a collection or a read list from its menu (on an OPDS catalog, from the book's sheet). Downloads continue in the background, with a progress notification.</li>
+          <li><strong>Smart downloads</strong> (Downloads › Queue &amp; settings) keeps the next one to five books of the series you're reading downloaded, so the next one is always there. <strong>Delete after reading</strong> removes a book once you've finished it.</li>
+          <li><strong>Auto-download new books</strong> of a series when they arrive on a Komga server.</li>
+          <li><strong>Download only on Wi-Fi</strong> and a <strong>storage limit</strong> (Settings › Downloads). Over the limit, the oldest books you've finished are removed; unread books never are.</li>
           <li><strong>Simultaneous downloads:</strong> up to three books download at once (two by default).</li>
           <li><strong>SD card:</strong> on a device with a memory card, Downloads › Queue &amp; settings › Download location keeps downloads on the card, and offers to move the ones you already have.</li>
           <li><strong>Downloads › Library</strong> shows everything on the device, grouped by series, even with no connection.</li>
         </ul>
-        <p>Reading progress made offline is saved on the device and sent to the server the next time you're connected.</p>
+        <p>Reading progress made offline is saved on the device and sent to the server the next time you're connected, on every server that takes progress (see <a href="#servers">Supported servers</a>).</p>
+
+        <h2 id="new-books">New-book notifications</h2>
+        <p>Turn on Settings › Notifications › <strong>New books</strong> to get a notification when a series you follow or read gets a new book. Benday asks for Android's permission to show notifications; if you refuse, the switch stays off and Benday offers Android's settings, where you can allow them later.</p>
+        <ul>
+          <li><strong>Which series:</strong> the ones you auto-download (Komga) and the ones you turn on with <strong>Notify about new books</strong> in a series' menu (on Kavita and Stump, that is how you choose them). Turn on <strong>Also series I'm reading</strong> to include every series with a book read or started.</li>
+          <li><strong>Which servers:</strong> every saved Komga, Kavita and Stump server, signed in with what is saved (never a new login), at its home or away address, whichever answers. OPDS catalogs aren't checked.</li>
+          <li><strong>When:</strong> every 3, 6 (the default), 12 or 24 hours in the background, when Android lets it run (with enough battery, and only on Wi-Fi if you choose); also when the app starts, and while it is open, soon after the server reports new books. A check asks each server one small question when nothing is new.</li>
+          <li>One notification per series, grouped when several series have new books. Tap it to open the series, on the server it came from.</li>
+          <li>Books you've already read or started, and books you've already seen in Updates, aren't announced. The first check only notes what is there, so turning it on doesn't announce your whole library.</li>
+        </ul>
 
         <h2 id="sync">Sync between devices</h2>
-        <p>Benday keeps its shared data in your Komga account, so there is nothing extra to set up:</p>
+        <p>On <strong>Komga</strong>, Benday keeps its shared data in your Komga account, so there is nothing extra to set up:</p>
         <ul>
           <li>Reading progress (Komga's own, also seen by Komga's web reader and other apps)</li>
-          <li>Bookmarks, ratings and Want to Read</li>
+          <li>Bookmarks, ratings and Want to read</li>
           <li>Per-series display settings and reading direction</li>
         </ul>
-        <p>The app's theme, look, image quality and smart downloads setting follow your account too. Downloads, statistics, history and the other settings stay on each device.</p>
+        <p>The app's theme, look, image quality and smart downloads setting follow your Komga account too.</p>
+        <p>On <strong>Kavita</strong>, reading progress is Kavita's own, so Kavita's web reader and your other devices see it; bookmarks, ratings and display settings stay on each device. The same goes for <strong>Stump</strong>: progress is Stump's own, which its web reader sees, and the rest stays on each device. On an <strong>OPDS catalog</strong>, progress reaches the server where Benday knows how (the <a href="#servers">table above</a>, and <a href="#koreader-sync">KOReader sync</a>); otherwise it stays on the device.</p>
+        <p>Downloads, statistics, history and the other settings stay on each device everywhere.</p>
 
         <h2 id="ratings">Ratings and Discover</h2>
-        <p>Rate a series from its page. Ratings, together with what you've read, feed the <strong>Discover</strong> shelf, which suggests unread series that share writers, artists, genres or tags with the ones you liked, and says why. Want to Read is a list of series to start later.</p>
+        <p>Discover is for Komga. Rate a series from its page. Ratings, together with what you've read, feed the <strong>Discover</strong> shelf, which suggests unread series that share writers, artists, genres or tags with the ones you liked, and says why. Want to read is a list of series to start later, on Komga and Kavita: on Kavita it is Kavita's own list, the one its web reader shows.</p>
 
         <h2 id="tracking">Tracking and Komf</h2>
-        <p><strong>MangaUpdates:</strong> sign in under Settings › Tracking, link a series from its menu (<em>Track on…</em>), and Benday updates your MangaUpdates list as you read. If MangaUpdates is further along than Komga, Benday offers to mark the earlier books read.</p>
-        <p><strong>Komf</strong> is a metadata tool for Komga. If you run one, enter its address in Settings; admins then get <em>Identify with Komf</em> and <em>Auto-match</em> in a series' menu.</p>
+        <p><strong>MangaUpdates:</strong> sign in under Settings › Tracking, link a series from its menu (<em>Track on…</em>), and Benday updates your MangaUpdates list as you read. It works on Komga. If MangaUpdates is further along than your server, Benday offers to mark the earlier books read.</p>
+        <p><strong>Komf</strong> is a metadata tool for Komga. If you run one and are a Komga admin, enter its address under Settings › Metadata › Komf; <em>Identify with Komf</em> and <em>Auto-match with Komf</em> then appear in a series' menu.</p>
 
         <h2 id="local">Files on your device</h2>
-        <p>The Local Files tab opens CBZ, CBR and PDF files (and ZIP or RAR archives of images) from your device without a server. Benday remembers where you stopped in each.</p>
+        <p>The Local files tab opens CBZ, CBR and PDF files (and ZIP or RAR archives of images) from your device without a server. Benday remembers where you stopped in each.</p>
 
         <h2 id="privacy">Privacy and app lock</h2>
         <ul>
@@ -147,13 +264,15 @@
         </ul>
 
         <h2 id="backup">Backup and restore</h2>
-        <p>Settings › Backup &amp; restore saves a file with your settings, server addresses, usernames, statistics and history. It never contains passwords or API keys, so after restoring on a new phone you sign in again. Downloads aren't included.</p>
+        <p>Settings › Backup &amp; restore saves a file with your settings, bookmarks, reading history and statistics, per-series reading modes, and server addresses and usernames. Passwords aren't included, so after restoring on a new phone you sign in again (an OPDS address with an API key in it is saved as it is). Downloads aren't included.</p>
 
         <h2 id="troubleshooting">Troubleshooting</h2>
-        <h3>"Cannot reach server"</h3>
+        <h3>"Can't reach the server"</h3>
         <p>Open the same address in the phone's browser. If that fails too, the phone can't reach the server: check that you're on the same network (or the VPN is on), the port is right, and there's no firewall in the way. <code>localhost</code> means the phone itself, so use the server's network address instead.</p>
-        <h3>"This doesn't look like a Komga server"</h3>
-        <p>The address answered, but not with Komga. A login page (an SSO proxy, for example) or a wrong path is in the way. Use the address that opens Komga itself.</p>
+        <h3>"This isn't a server Benday supports or an OPDS catalog"</h3>
+        <p>The address answered, but not as Komga, Kavita, Stump or an OPDS catalog. A login page (an SSO proxy, for example) or a wrong path is in the way. For Komga, Kavita and Stump, use the address that opens the server itself; for other servers, the catalog's address (see <a href="#signing-in">Signing in</a>).</p>
+        <h3>"This is Grimmory's Komga-compatible API"</h3>
+        <p>Grimmory and BookLore offer a read-only imitation of Komga's API, which can't save progress. Add their OPDS catalog instead (<code>…/api/v1/opds</code>) with the same username and password.</p>
         <h3>Certificate errors</h3>
         <p>Check the certificate is valid for the name you typed. For a self-signed certificate, accept the trust dialog when Benday offers it. If the certificate changed (renewed), Benday asks again.</p>
         <h3>Something else</h3>
@@ -172,7 +291,7 @@
         <a href="feedback.html">Feedback</a>
         <a href="privacy.html">Privacy</a>
       </nav>
-      <p class="legal">Benday is not affiliated with Komga. Google Play is a trademark of Google LLC.</p>
+      <p class="legal">Benday is not affiliated with Komga, Kavita or the other servers it reads from. Google Play is a trademark of Google LLC.</p>
     </div>
   </footer>
   <script src="config.js"></script>
