@@ -1,8 +1,9 @@
 # Benday
 
 Benday is an Android reader for [Komga](https://komga.org),
-[Kavita](https://www.kavitareader.com), [Stump](https://www.stumpapp.dev)
-and OPDS catalogs: comics, manga and webtoons from your own server, online or
+[Kavita](https://www.kavitareader.com), [Stump](https://www.stumpapp.dev),
+[Suwayomi](https://github.com/Suwayomi/Suwayomi-Server),
+[BookOrbit](https://github.com/bookorbit/bookorbit) and OPDS catalogs: comics, manga and webtoons from your own server, online or
 offline.
 
 **Website: <https://getbenday.com/>**

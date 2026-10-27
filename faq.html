@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FAQ · Benday</title>
-  <meta name="description" content="Answers to common questions about Benday, the Android comic reader for Komga, Kavita, Stump and OPDS catalogs.">
+  <meta name="description" content="Answers to common questions about Benday, the Android comic reader for Komga, Kavita, Stump, Suwayomi, BookOrbit and OPDS catalogs.">
   <meta property="og:title" content="FAQ · Benday">
-  <meta property="og:description" content="Answers to common questions about Benday, the Android comic reader for Komga, Kavita, Stump and OPDS catalogs.">
+  <meta property="og:description" content="Answers to common questions about Benday, the Android comic reader for Komga, Kavita, Stump, Suwayomi, BookOrbit and OPDS catalogs.">
   <meta property="og:image" content="https://getbenday.com/assets/img/feature-graphic.png">
   <meta property="og:url" content="https://getbenday.com/faq.html">
   <meta property="og:type" content="website">
@@ -46,7 +46,7 @@
 
         <details>
           <summary>Does Benday come with comics?</summary>
-          <div><p>No. Benday is a reader for your own server: <a href="https://komga.org">Komga</a>, <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a> or any OPDS catalog, run by you or someone who shares it with you. It shows the comics, manga and webtoons on that server, and files already on your device.</p></div>
+          <div><p>No. Benday is a reader for your own server: <a href="https://komga.org">Komga</a>, <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>, <a href="https://github.com/Suwayomi/Suwayomi-Server">Suwayomi</a>, <a href="https://github.com/bookorbit/bookorbit">BookOrbit</a> or any OPDS catalog, run by you or someone who shares it with you. It shows the comics, manga and webtoons on that server, and files already on your device.</p></div>
         </details>
 
         <details>
@@ -55,7 +55,7 @@
         </details>
 
         <details>
-          <summary>Is Benday made by the Komga, Kavita or Stump team?</summary>
+          <summary>Is Benday made by the Komga, Kavita, Stump, Suwayomi or BookOrbit team?</summary>
           <div><p>No. Benday is an independent app that uses the servers' public APIs and OPDS catalogs. Questions about a server itself belong with its makers; questions about the app, <a href="feedback.html">here</a>.</p></div>
         </details>
 
@@ -73,12 +73,12 @@
 
         <details>
           <summary>Which servers work?</summary>
-          <div><p>Komga, Kavita and Stump (0.1.8 and newer), through their own APIs, and any OPDS 1.2 catalog. Benday knows the extras of Codex, calibre-web, Calibre-Web-Automated, Suwayomi, Grimmory, BookLore, BookOrbit and LANraragi. The guide's <a href="docs.html#servers">Supported servers</a> shows what works on each.</p></div>
+          <div><p>Komga, Kavita, Stump (0.1.8 and newer), Suwayomi (2.1 and newer) and BookOrbit (3.4 and newer), through their own APIs, and any OPDS 1.2 catalog. Benday knows the extras of Codex, calibre-web, Calibre-Web-Automated, Suwayomi's catalog, Grimmory, BookLore, BookOrbit's catalog and LANraragi. The guide's <a href="docs.html#servers">Supported servers</a> shows what works on each.</p></div>
         </details>
 
         <details>
-          <summary>Which Komga, Kavita or Stump version do I need?</summary>
-          <div><p>Komga: a recent 1.x; keeping the server up to date is the safest bet. Signing in with an API key needs Komga 1.15 or newer. Kavita: 0.8.9 or newer for full Kavita mode; an older Kavita works through its OPDS catalog. Stump: 0.1.8 or newer for full Stump mode, and an account with Stump's API keys permission; otherwise Stump works through its OPDS catalog.</p></div>
+          <summary>Which Komga, Kavita, Stump, Suwayomi or BookOrbit version do I need?</summary>
+          <div><p>Komga: a recent 1.x; keeping the server up to date is the safest bet. Signing in with an API key needs Komga 1.15 or newer. Kavita: 0.8.9 or newer for full Kavita mode; an older Kavita works through its OPDS catalog. Stump: 0.1.8 or newer for full Stump mode, and an account with Stump's API keys permission; otherwise Stump works through its OPDS catalog. Suwayomi: 2.1 or newer for full Suwayomi mode; an older one works through its OPDS catalog. BookOrbit: 3.4 or newer for full BookOrbit mode (DjVu books need 3.5); an older one works through its OPDS catalog.</p></div>
         </details>
 
         <details>
@@ -88,6 +88,8 @@
               <li><strong>Komga:</strong> the address you open in a browser, such as <code>http://192.168.1.20:25600</code>, with its path if it has one. Your email and password, or an API key.</li>
               <li><strong>Kavita:</strong> the address you open in a browser, with your username and password or your API key. Benday uses the password once to fetch your API key and keeps only the key.</li>
               <li><strong>Stump:</strong> the address you open in a browser, with your username and password or a Stump API key. Benday uses the password once to create an API key for this device and keeps only the key. The account needs Stump's API keys permission; without it, use Stump's OPDS catalog (<code>/opds/v1.2/catalog</code>) with the same login.</li>
+              <li><strong>Suwayomi:</strong> the address you open in a browser, such as <code>http://192.168.1.20:4567</code>, with the username and password of Suwayomi's login (or None if it asks for none). Benday keeps the password: Suwayomi's sign-ins last minutes, and Benday signs in again by itself.</li>
+              <li><strong>BookOrbit:</strong> the address you open in a browser, with your BookOrbit username and password (not an OPDS login). Benday uses the password once and keeps only the sign-in BookOrbit gives this device, which you can see and end in BookOrbit's settings. A BookOrbit that allows only single sign-on works through its OPDS catalog.</li>
               <li><strong>Other servers:</strong> their OPDS catalog's address, with your login on that server (or None for an open catalog). Codex <code>/opds/v1.2/</code>, calibre-web and Calibre-Web-Automated <code>/opds</code>, Suwayomi <code>/api/opds/v1.2</code>, Grimmory, BookLore and BookOrbit <code>/api/v1/opds</code>, LANraragi <code>/api/opds</code>, each after the server's address.</li>
             </ul>
             <p>The guide's <a href="docs.html#signing-in">Signing in</a> has the details.</p>
@@ -138,8 +140,8 @@
         </details>
 
         <details>
-          <summary>My server is Komga, Kavita or Stump, but I added its OPDS catalog.</summary>
-          <div><p>Benday notices, and Home offers to switch to full Komga, Kavita or Stump mode, which has much more (Kavita needs 0.8.9 or newer, Stump 0.1.8 or newer). Books you downloaded through the catalog stay readable under Downloads.</p></div>
+          <summary>My server is Komga, Kavita, Stump, Suwayomi or BookOrbit, but I added its OPDS catalog.</summary>
+          <div><p>Benday notices, and Home offers to switch to full Komga, Kavita, Stump, Suwayomi or BookOrbit mode, which has much more (Kavita needs 0.8.9 or newer, Stump 0.1.8 or newer, Suwayomi 2.1 or newer, BookOrbit 3.4 or newer; BookOrbit asks for your account's password, since its OPDS logins are separate). Books you downloaded through the catalog stay readable under Downloads.</p></div>
         </details>
 
         <details>
@@ -164,17 +166,17 @@
 
         <details>
           <summary>Which formats can Benday read?</summary>
-          <div><p>CBZ, CBR (except RAR5 archives: convert those to CBZ), PDF, and EPUB and KEPUB (comics and novels). Files on your device can be CBZ, CBR or PDF.</p></div>
+          <div><p>CBZ, CBR (except RAR5 archives: convert those to CBZ), PDF, EPUB and KEPUB (comics and novels), and DjVu from BookOrbit 3.5 or newer. Files on your device can be CBZ, CBR or PDF.</p></div>
         </details>
 
         <details>
           <summary>A manga opens left to right. How do I change it?</summary>
-          <div><p>Pick right to left from the reader's toolbar; Benday remembers it for that series (on all your devices, with Komga). To fix it for everyone, set the series' reading direction in Komga, a reading profile in Kavita, or the library's reading settings in Stump.</p></div>
+          <div><p>Pick right to left from the reader's toolbar; Benday remembers it for that series (on all your devices, with Komga). To fix it for everyone, set the series' reading direction in Komga, a reading profile in Kavita, the library's reading settings in Stump, or the reader settings in BookOrbit.</p></div>
         </details>
 
         <details>
           <summary>Does my progress sync with the server's web reader and other apps?</summary>
-          <div><p>On Komga, Kavita and Stump, yes: Benday saves progress to the server, so its web reader and other apps see it. On Komga, bookmarks, ratings and per-series settings also sync between your Benday devices. On OPDS catalogs it depends on the server; see the next questions.</p></div>
+          <div><p>On Komga, Kavita, Stump, Suwayomi and BookOrbit, yes: Benday saves progress to the server, so its web reader and other apps see it. On Komga, bookmarks, ratings and per-series settings also sync between your Benday devices. On OPDS catalogs it depends on the server; see the next questions.</p></div>
         </details>
 
         <details>

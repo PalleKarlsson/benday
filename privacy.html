@@ -35,11 +35,12 @@
 
     <div class="wrap">
       <article class="prose" style="padding-block: 40px 72px">
-<p><em>Last updated: 25 October 2026</em></p>
+<p><em>Last updated: 26 October 2026</em></p>
 <p>Benday is a reader for comics, manga and webtoons stored on a server that
 you run or have access to: <a href="https://komga.org">Komga</a>,
-<a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>
-or an OPDS catalog. Benday is
+<a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>,
+<a href="https://github.com/Suwayomi/Suwayomi-Server">Suwayomi</a>,
+<a href="https://github.com/bookorbit/bookorbit">BookOrbit</a> or an OPDS catalog. Benday is
 developed by Palle Karlsson ("we"). This policy explains what the app does
 with your data.</p>
 <h2>The short version</h2>
@@ -54,12 +55,21 @@ only to the server you entered, to sign you in. For Kavita and Stump, Benday use
 your password once to get an API key for your account and stores only the
 key. On Stump, Benday creates that key on your account for this device,
 named "Benday (…)", and deletes the earlier keys it created for this
-device; you can see and revoke it in Stump's settings. If
+device; you can see and revoke it in Stump's settings. Suwayomi has no API
+keys: Benday stores your Suwayomi password, as for Komga, and keeps the
+short-lived sign-in Suwayomi gives it (a token or a session cookie) only in
+memory, sending it only to your Suwayomi server. BookOrbit has no API keys
+either: Benday uses your BookOrbit password once to sign in and stores only
+the sign-in BookOrbit gives this device (a renewable token, listed as
+"Benday (…)" among your sessions in BookOrbit's settings, where you can end
+it), never the password; the token is sent only to your BookOrbit server, and
+Benday renews it there once a day in the background so it doesn't expire.
+Removing the server in Benday ends that sign-in on the server. If
 you enter a separate KOReader sync login for a catalog, it is stored the
 same way and sent only to that server's KOReader sync.</p>
 <p><strong>Your library and reading.</strong> Covers, pages and books are loaded from your
 server. Your reading progress is saved on your device and to your account
-on the server, where the server takes it (Komga, Kavita, Stump and some OPDS
+on the server, where the server takes it (Komga, Kavita, Stump, Suwayomi, BookOrbit and some OPDS
 servers, directly or through the server's KOReader sync). On Komga,
 bookmarks, ratings, your Want to read list and per-series reader settings
 are also synced through your own Komga account, so they appear on your
@@ -76,7 +86,7 @@ image caches and reading statistics stay on your device.</p>
 </ul>
 <p><strong>Sync through your own WebDAV folder (optional).</strong> Off unless you set it
 up in Settings › Sync between devices. Then Benday sends the data it syncs
-— bookmarks of your Kavita, Stump and OPDS servers, and the name you give
+— bookmarks of your Kavita, Stump, Suwayomi, BookOrbit and OPDS servers, and the name you give
 each device — to the WebDAV address you entered (for example your own
 Nextcloud or NAS), and nowhere else; no Benday server or third party is
 involved. Each server's bookmarks are filed under a short code made from
