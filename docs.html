@@ -71,6 +71,7 @@
           <li><div><strong>Install Benday</strong> from Google Play on your Android phone or tablet (Android 7 or newer).</div></li>
           <li><div><strong>Sign in</strong> with the server's address, or the catalog's OPDS address, and your account. See <a href="#signing-in">Signing in</a>.</div></li>
           <li><div><strong>Start reading.</strong> Your libraries appear under Libraries (on an OPDS catalog, the catalog itself); anything you've started shows on Home.</div></li>
+          <li><div><strong>Take the tour</strong> if you like. On the sign-in screen, <strong>New here? Take a quick tour</strong> walks through the form; after your first sign-in Benday offers a tour of the app, which stays under <strong>⋮ › Take the tour</strong>.</div></li>
         </ol>
 
         <h2 id="servers">Supported servers</h2>
@@ -209,7 +210,8 @@
         <h3>Bookmarks and page actions</h3>
         <p>Bookmark a page from the toolbar; all bookmarks of a book are listed in the bookmarks sheet. Long-press a page to save or share it, or (as a Komga admin) make it the book's or series' cover.</p>
         <h3 id="epub">EPUB books</h3>
-        <p>Novels and other EPUBs scroll chapter by chapter. The <strong>Aa</strong> button opens the text settings: text size, line spacing, side margins, font, alignment and the page's colours (auto, light, sepia or dark). They apply to every EPUB you read on this device, streamed or downloaded.</p>
+        <p>Novels and other EPUBs read in one of two ways, chosen at the bottom of the <strong>Aa</strong> sheet. <strong>Scroll</strong>: each chapter is one long page; keep pulling past its end and the next chapter opens, pull down at its top for the end of the previous one. <strong>Pages</strong>: swipe sideways or tap the left or right edge to turn a page (from the right in right-to-left books), two columns side by side on a tablet held sideways; the bottom bar counts the chapter's pages.</p>
+        <p>The <strong>Aa</strong> button opens the text settings: text size, line spacing, side margins, font, alignment and the page's colours (auto, light, sepia or dark). They apply to every EPUB you read on this device, streamed or downloaded.</p>
         <ul>
           <li><strong>Font:</strong> the book's own (<em>Publisher's font</em>, where you start), the system's serif or sans, or one of the fonts that come with Benday: Literata, Atkinson Hyperlegible (made for low vision), OpenDyslexic and a monospace font.</li>
           <li><strong>Alignment:</strong> <em>Original</em> keeps the book's, <em>Left</em> sets ragged lines, <em>Justified</em> lines up both edges and hyphenates words in the book's language.</li>
@@ -250,7 +252,9 @@
           <li>Per-series display settings and reading direction</li>
         </ul>
         <p>The app's theme, look, image quality and smart downloads setting follow your Komga account too.</p>
-        <p>On <strong>Kavita</strong>, reading progress is Kavita's own, so Kavita's web reader and your other devices see it; bookmarks, ratings and display settings stay on each device. The same goes for <strong>Stump</strong>: progress is Stump's own, which its web reader sees, and the rest stays on each device. And for <strong>Suwayomi</strong>: progress is Suwayomi's own, which its web UI sees. And for <strong>BookOrbit</strong>: progress is BookOrbit's own, which its web reader and KOReader devices see; progress KOReader or a Kobo sends there shows up in Benday as it happens. On an <strong>OPDS catalog</strong>, progress reaches the server where Benday knows how (the <a href="#servers">table above</a>, and <a href="#koreader-sync">KOReader sync</a>); otherwise it stays on the device.</p>
+        <p>On <strong>Kavita</strong>, reading progress is Kavita's own, so Kavita's web reader and your other devices see it; bookmarks can follow you through <a href="#webdav-sync">WebDAV</a> (below), while ratings and display settings stay on each device. The same goes for <strong>Stump</strong>: progress is Stump's own, which its web reader sees, and the rest stays on each device. And for <strong>Suwayomi</strong>: progress is Suwayomi's own, which its web UI sees. And for <strong>BookOrbit</strong>: progress is BookOrbit's own, which its web reader and KOReader devices see; progress KOReader or a Kobo sends there shows up in Benday as it happens. On an <strong>OPDS catalog</strong>, progress reaches the server where Benday knows how (the <a href="#servers">table above</a>, and <a href="#koreader-sync">KOReader sync</a>); otherwise it stays on the device.</p>
+        <h3 id="webdav-sync">Bookmarks on the other servers: WebDAV</h3>
+        <p>On Kavita, Stump, Suwayomi, BookOrbit and OPDS servers, Benday can keep your bookmarks the same on all your devices through a folder on a WebDAV server of your own: Nextcloud, ownCloud, a NAS or any WebDAV share. In <strong>Settings › Sync between devices</strong>, enter the WebDAV address, your username and password (on Nextcloud, an app password) and a folder, tap <strong>Test</strong>, then <strong>Turn on</strong>; set up your other devices with the same folder. Benday syncs when you open the app, soon after a change, and on <strong>Sync now</strong>. The files go only to your WebDAV server; Komga's data keeps syncing through your Komga account.</p>
         <p>Downloads, statistics, history and the other settings stay on each device everywhere.</p>
 
         <h2 id="ratings">Ratings and Discover</h2>
@@ -276,6 +280,7 @@
         <h2 id="troubleshooting">Troubleshooting</h2>
         <h3>"Can't reach the server"</h3>
         <p>Open the same address in the phone's browser. If that fails too, the phone can't reach the server: check that you're on the same network (or the VPN is on), the port is right, and there's no firewall in the way. <code>localhost</code> means the phone itself, so use the server's network address instead.</p>
+        <p>On <strong>Android 17</strong>, Benday needs your permission to reach anything on your home network. Android asks whether Benday may "find, connect to, and determine the relative position of nearby devices": that is Android's name for it, and Benday uses it only to reach your servers. If you refused, the sign-in screen says so and offers <strong>Allow</strong>; you can also allow <strong>Nearby devices</strong> for Benday in Android's settings. Servers reached over the internet or a VPN don't need it.</p>
         <h3>"This isn't a server Benday supports or an OPDS catalog"</h3>
         <p>The address answered, but not as Komga, Kavita, Stump, Suwayomi, BookOrbit or an OPDS catalog. A login page (an SSO proxy, for example) or a wrong path is in the way. For Komga, Kavita, Stump, Suwayomi and BookOrbit, use the address that opens the server itself; for other servers, the catalog's address (see <a href="#signing-in">Signing in</a>).</p>
         <h3>"This is Grimmory's Komga-compatible API"</h3>
