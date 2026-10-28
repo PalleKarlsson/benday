@@ -26,7 +26,7 @@ window.BENDAY = {
   // Cloudflare Web Analytics (cookieless page counts, docs/website.md ›
   // Metrics): the site token from Cloudflare › Analytics & Logs › Web
   // Analytics. Empty: no analytics script loads.
-  cloudflareAnalytics: '',
+  cloudflareAnalytics: 'a22d33acb0734355b4ef91774e9f4026',
 
   // Contact address for privacy questions (also in privacy.html).
   email: 'support@getbenday.com',
