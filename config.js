@@ -23,6 +23,11 @@ window.BENDAY = {
     optIn: 'https://play.google.com/apps/testing/app.benday.reader',
   },
 
+  // Cloudflare Web Analytics (cookieless page counts, docs/website.md ›
+  // Metrics): the site token from Cloudflare › Analytics & Logs › Web
+  // Analytics. Empty: no analytics script loads.
+  cloudflareAnalytics: '',
+
   // Contact address for privacy questions (also in privacy.html).
   email: 'support@getbenday.com',
 };

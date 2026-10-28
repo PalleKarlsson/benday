@@ -48,7 +48,9 @@ with your data.</p>
 analytics, no advertising and no crash reporting. Your data stays on your
 device and on the servers you connect it to. Words you look up in EPUB books
 go to Wikimedia (Wiktionary and Wikipedia) only when you tap Look up or
-Wikipedia.</p>
+Wikipedia. Settings › Dictionaries fetches its list of downloadable
+dictionaries, and the ones you download, from GitHub, with nothing about
+you or your books.</p>
 <h2>Data the app handles</h2>
 <p><strong>Your server address and sign-in.</strong> The server address, your username
 and your password or API key are stored on your device. Passwords, API keys
@@ -91,6 +93,17 @@ Wiktionary entry shows Wikimedia's own page inside Benday, and
 <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia's privacy policy</a>
 applies to it. Imported dictionaries stay on your device and are not in
 backups.</p>
+<p><strong>Downloading dictionaries.</strong> Opening Settings › Dictionaries fetches the
+list of dictionaries Benday offers from GitHub, where we publish them
+(github.com, which hands the files over from its own file host), and tapping
+Download fetches that dictionary's file from there. These are plain
+downloads: no account, no identifier and nothing about you or your books is
+sent; like any download, GitHub sees your IP address and which file was
+asked for, and
+<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>
+applies. GitHub shows us only how many times each file was downloaded. The
+list is kept on your device for when you're offline, and downloaded
+dictionaries stay on your device and are not in backups.</p>
 <p><strong>Sync through your own WebDAV folder (optional).</strong> Off unless you set it
 up in Settings › Sync between devices. Then Benday sends the data it syncs,
 for the kinds of data you leave switched on there, to the WebDAV address you
@@ -109,8 +122,17 @@ device) go only if you switch that on. Each server's data is filed under a
 short code made from its address and your username; passwords, API keys and
 sign-in tokens are never sent there. The WebDAV password is kept in
 Android's encrypted storage on your device and sent only to that address.
-Stopping sync forgets the address and password on the device; the files stay
-in your folder for you to delete.</p>
+You can also encrypt the folder with a passphrase: every file in it is then
+encrypted on your device (AES-256-GCM) before it is sent, so the WebDAV
+server sees only file names (made of those short codes, device codes and
+years) and sizes. The passphrase is not stored; the key made from it is
+kept in Android's encrypted storage on your device, never in backups, and
+is never sent anywhere. A lost passphrase can't be recovered by us or
+anyone else.
+While sync is on, Android also runs it in the background every six hours
+(see Background work below). Stopping sync forgets the address and password
+on the device and ends the background sync; the files stay in your folder
+for you to delete.</p>
 <p><strong>Server certificates.</strong> If your server uses a self-signed certificate and
 you choose to trust it, Benday stores its fingerprint on your device so it
 can recognise the same server later.</p>
@@ -132,7 +154,9 @@ passwords. The file is saved where you choose; we never receive it.</p>
   your device, and what it learns stays on your device. If you saved a
   BookOrbit server, a daily background task also renews its sign-in
   (BookOrbit ends sessions unused for a week); it sends nothing but that
-  renewal, to that server only.</li>
+  renewal, to that server only. If you set up sync through your own WebDAV
+  folder, Android runs that sync every six hours too; it talks only to the
+  WebDAV address you entered and sends what the app's own sync sends.</li>
 <li><strong>Foreground service (data sync)</strong>: to keep downloads running while the
   app is in the background.</li>
 <li><strong>Biometrics</strong>: only if you turn on the app lock.</li>
@@ -156,6 +180,19 @@ the app's storage or uninstalling it deletes the data on your device. Data
 on your server is managed by that server; data sent to MangaUpdates is
 managed by MangaUpdates, and words looked up on Wiktionary or Wikipedia by
 Wikimedia.</p>
+<h2>This website</h2>
+<p>getbenday.com is hosted by GitHub Pages; GitHub receives your IP address
+and browser details when you load a page, as any web host does (see
+<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>).
+We count visits with Cloudflare Web Analytics: no cookies, nothing stored
+in your browser, and no profile of you. It reports totals only: which pages
+were visited, from which site, roughly from which country, on what kind of
+browser and device, and how fast the pages loaded
+(<a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>).
+Links to Google Play carry a tag saying they came from this site, so that
+Google Play's statistics can count visits from here; they carry nothing
+about you. The feedback form only opens a pre-filled issue on GitHub; it
+sends nothing itself.</p>
 <h2>Changes</h2>
 <p>If this policy changes, the new version will be published at this address
 with a new date.</p>

@@ -5,10 +5,17 @@
   var cfg = window.BENDAY || {};
   var play = cfg.play || {};
 
-  // Google Play buttons.
+  // Google Play buttons. The campaign tags let Play Console's acquisition
+  // report count store visits and installs from this site, per page.
+  var page = location.pathname.replace(/^.*\//, '').replace(/\.html$/, '') || 'index';
+  function tagged(url) {
+    return url + (url.indexOf('?') < 0 ? '?' : '&') +
+      'utm_source=getbenday.com&utm_medium=website&utm_campaign=' +
+      encodeURIComponent(page);
+  }
   document.querySelectorAll('[data-play]').forEach(function (a) {
     if (play.live && play.url) {
-      a.href = play.url;
+      a.href = tagged(play.url);
     } else {
       a.removeAttribute('href');
       a.setAttribute('aria-disabled', 'true');
@@ -19,6 +26,16 @@
   document.querySelectorAll('[data-play-only]').forEach(function (el) {
     el.hidden = !(play.live && play.url);
   });
+
+  // Cloudflare Web Analytics: no cookies, nothing stored in the browser.
+  if (cfg.cloudflareAnalytics) {
+    var beacon = document.createElement('script');
+    beacon.defer = true;
+    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    beacon.setAttribute('data-cf-beacon',
+      JSON.stringify({ token: cfg.cloudflareAnalytics }));
+    document.head.appendChild(beacon);
+  }
 
   // Links to the tracker; hidden while there is none.
   document.querySelectorAll('[data-issues]').forEach(function (a) {
