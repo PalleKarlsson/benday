@@ -55,7 +55,9 @@ and zip times, sorted output).
 
 - `.ifo`: version 3.0.0, `sametypesequence=h`, `idxoffsetbits=32`,
   `synwordcount`, `author`, `website`, `description` (the attribution),
-  `date`.
+  `date`, `lang` (the headwords' language, then the definitions' when they
+  differ: `sv-en`; Benday reads the first as the language, so an import
+  from a file doesn't ask).
 - `.idx`: one entry per headword (all of a word's parts of speech in one
   article), sorted by StarDict's rule: `g_ascii_strcasecmp` (bytes, only
   ASCII letters folded), then `strcmp`. Case variants are separate

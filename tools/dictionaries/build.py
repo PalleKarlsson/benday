@@ -103,6 +103,14 @@ BY = ('CC BY 4.0', 'https://creativecommons.org/licenses/by/4.0/')
 LEXIN_PAGE = 'https://sprakresurser.isof.se/lexin/svenska/'
 
 
+def ifo_lang(cfg: dict) -> str:
+    """The .ifo's `lang`: the headwords' language, then the definitions'
+    when they differ (`sv-en`); Benday takes the first as the book's."""
+    if cfg['definitions'] == cfg['language']:
+        return cfg['language']
+    return f"{cfg['language']}-{cfg['definitions']}"
+
+
 def licence_of(cfg: dict) -> tuple[str, str]:
     return BY if cfg['source'] == 'lexin' else BY_SA
 
@@ -365,6 +373,7 @@ def build_dictionary(key: str, cfg: dict, source_path: Path, version: str,
             'description': attribution(cfg),
             'date': when.strftime('%Y.%m.%d'),
             'sametypesequence': 'h',
+            'lang': ifo_lang(cfg),
         }, mtime=int(when.timestamp()))
     lic = work / 'LICENSE.txt'
     lic.write_text(licence_text(key, cfg, version, source_url),
