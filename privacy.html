@@ -35,7 +35,7 @@
 
     <div class="wrap">
       <article class="prose" style="padding-block: 40px 72px">
-<p><em>Last updated: 27 October 2026</em></p>
+<p><em>Last updated: 28 October 2026</em></p>
 <p>Benday is a reader for comics, manga and webtoons stored on a server that
 you run or have access to: <a href="https://komga.org">Komga</a>,
 <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>,
@@ -46,7 +46,9 @@ with your data.</p>
 <h2>The short version</h2>
 <p>Benday does not send any data to us. It has no accounts with us, no
 analytics, no advertising and no crash reporting. Your data stays on your
-device and on the servers you connect it to.</p>
+device and on the servers you connect it to. Words you look up in EPUB books
+go to Wikimedia (Wiktionary and Wikipedia) only when you tap Look up or
+Wikipedia.</p>
 <h2>Data the app handles</h2>
 <p><strong>Your server address and sign-in.</strong> The server address, your username
 and your password or API key are stored on your device. Passwords, API keys
@@ -62,7 +64,8 @@ same way and sent only to that server's KOReader sync.</p>
 server. Your reading progress is saved on your device and to your account
 on the server, where the server takes it (Komga, Kavita, Stump and some OPDS
 servers, directly or through the server's KOReader sync). On Komga,
-bookmarks, ratings, your Want to read list and per-series reader settings
+bookmarks, EPUB highlights (the highlighted text, its place in the book and
+your note), ratings, your Want to read list and per-series reader settings
 are also synced through your own Komga account, so they appear on your
 other devices; on other servers they stay on your device. Downloaded books,
 image caches and reading statistics stay on your device.</p>
@@ -75,17 +78,39 @@ image caches and reading statistics stay on your device.</p>
 <li><strong>Komf</strong>: if you enter the address of your own Komf server (a metadata
   tool for Komga), Benday sends it the series you ask it to identify.</li>
 </ul>
+<p><strong>Looking words up in EPUB books.</strong> When you select text in an EPUB and tap
+Look up, Benday first searches the dictionaries you imported in Settings ›
+Dictionaries, on your device. Only if they don't have the word, or when you
+tap Look up online, Wikipedia or a suggested title, does Benday send the
+selected word or phrase and the book's language to Wikimedia (Wiktionary
+and Wikipedia), and nothing else: no account, no identifier, no other text
+from the book; the requests name the app and its version, as Wikimedia asks.
+Nothing is sent until you tap. Answers are kept on your device for up to 30
+days so the same word isn't asked again. Reading a full Wikipedia article or
+Wiktionary entry shows Wikimedia's own page inside Benday, and
+<a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia's privacy policy</a>
+applies to it. Imported dictionaries stay on your device and are not in
+backups.</p>
 <p><strong>Sync through your own WebDAV folder (optional).</strong> Off unless you set it
-up in Settings › Sync between devices. Then Benday sends the data it syncs
-— bookmarks of your Kavita, Stump and OPDS servers, and the name you give
-each device — to the WebDAV address you entered (for example your own
-Nextcloud or NAS), and nowhere else; no Benday server or third party is
-involved. Each server's bookmarks are filed under a short code made from
-its address and your username; passwords and API keys are never sent
-there. The WebDAV password is kept in Android's encrypted storage on your
-device and sent only to that address. Stopping sync forgets the address
-and password on the device; the files stay in your folder for you to
-delete.</p>
+up in Settings › Sync between devices. Then Benday sends the data it syncs,
+for the kinds of data you leave switched on there, to the WebDAV address you
+entered (for example your own Nextcloud or NAS), and nowhere else; no Benday
+server or third party is involved. For your Kavita, Stump, Suwayomi,
+BookOrbit and OPDS servers that is bookmarks (with their notes), EPUB
+highlights (the highlighted text, its place in the book and your note), series
+ratings, the Want to Read list, per-series reader settings, and on OPDS
+catalogs the reading progress of the books you read (title, author and the
+catalog's links to the book) and the shelves pinned to Home. For the app as
+a whole it is the look and reader defaults, the name you give each device,
+and your saved servers' names, addresses, kinds and usernames (so your other
+devices can offer to add them). Your reading history and statistics (which
+books you read, when and for how long, including the names of files on the
+device) go only if you switch that on. Each server's data is filed under a
+short code made from its address and your username; passwords, API keys and
+sign-in tokens are never sent there. The WebDAV password is kept in
+Android's encrypted storage on your device and sent only to that address.
+Stopping sync forgets the address and password on the device; the files stay
+in your folder for you to delete.</p>
 <p><strong>Server certificates.</strong> If your server uses a self-signed certificate and
 you choose to trust it, Benday stores its fingerprint on your device so it
 can recognise the same server later.</p>
@@ -129,7 +154,8 @@ servers you connect it to.</p>
 <p>Everything Benday stores is on your device or on your own servers. Clearing
 the app's storage or uninstalling it deletes the data on your device. Data
 on your server is managed by that server; data sent to MangaUpdates is
-managed by MangaUpdates.</p>
+managed by MangaUpdates, and words looked up on Wiktionary or Wikipedia by
+Wikimedia.</p>
 <h2>Changes</h2>
 <p>If this policy changes, the new version will be published at this address
 with a new date.</p>

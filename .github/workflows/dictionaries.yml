@@ -1,0 +1,60 @@
+# Rebuilds Benday's offline dictionaries from Wiktionary (and Lexin) every
+# quarter and publishes them as release assets of this repository.
+#
+# Each run makes a release `dictionaries-<YYYY-MM-DD>` with the zips, and
+# replaces `dictionaries.json` on the fixed release `dictionaries`, which the
+# app reads at
+# https://github.com/PalleKarlsson/benday/releases/download/dictionaries/dictionaries.json
+#
+# The build tool lives in tools/dictionaries/ (a copy of Benday's
+# tool/dictionaries/, standard-library Python only).
+name: Dictionaries
+
+on:
+  schedule:
+    - cron: '0 4 1 1,4,7,10 *' # 04:00 UTC on 1 Jan, Apr, Jul and Oct
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dictionaries
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build
+        run: |
+          tag="dictionaries-$(date -u +%Y-%m-%d)"
+          echo "TAG=$tag" >> "$GITHUB_ENV"
+          python3 tools/dictionaries/build.py \
+            --cache-dir "$RUNNER_TEMP/cache" \
+            --out "$RUNNER_TEMP/out" \
+            --base-url "https://github.com/${GITHUB_REPOSITORY}/releases/download/$tag"
+          ls -l "$RUNNER_TEMP/out"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          out="$RUNNER_TEMP/out"
+          notes="Offline dictionaries for Benday, built $(date -u +%Y-%m-%d) by the Dictionaries workflow. Each zip holds its licence and attribution (LICENSE.txt)."
+          gh release create "$TAG" "$out"/*.zip "$out/dictionaries.json" \
+            --title "Dictionaries $(date -u +%Y-%m-%d)" --notes "$notes" --latest=false
+          # The fixed index the app reads.
+          if ! gh release view dictionaries >/dev/null 2>&1; then
+            gh release create dictionaries --title "Dictionaries (index)" \
+              --notes "The current dictionaries.json; the files are on the dated dictionaries-<date> releases." \
+              --latest=false
+          fi
+          gh release upload dictionaries "$out/dictionaries.json" --clobber
