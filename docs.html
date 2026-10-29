@@ -65,7 +65,7 @@
 
       <article class="prose">
         <h2 id="getting-started">Getting started</h2>
-        <p>Benday reads from a server you run yourself, on a computer, NAS or home server: <a href="https://komga.org">Komga</a>, <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>, <a href="https://github.com/Suwayomi/Suwayomi-Server">Suwayomi</a>, <a href="https://github.com/bookorbit/bookorbit">BookOrbit</a>, <a href="https://www.audiobookshelf.org">Audiobookshelf</a> (its ebooks and comics), or any server with an OPDS catalog, such as Codex, calibre-web, calibre's own content server or LANraragi. Benday doesn't come with any comics: it shows what's on your server.</p>
+        <p>Benday reads from a server you run yourself, on a computer, NAS or home server: <a href="https://komga.org">Komga</a>, <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>, <a href="https://github.com/Suwayomi/Suwayomi-Server">Suwayomi</a>, <a href="https://github.com/bookorbit/bookorbit">BookOrbit</a>, <a href="https://www.audiobookshelf.org">Audiobookshelf</a> (its ebooks and comics), or any server with an OPDS catalog, such as Codex, calibre-web, calibre's own content server, LANraragi, Mylar3, Ubooquity, COPS or Jellyfin's OPDS plugin. Benday doesn't come with any comics: it shows what's on your server.</p>
         <ol class="steps">
           <li><div><strong>Have a server.</strong> Your own, or one a friend shares with you. New to this? Komga is a good start for comics and manga: follow its <a href="https://komga.org/docs/category/installation">installation guide</a> and add a library. <a href="#servers">Supported servers</a> lists what works where.</div></li>
           <li><div><strong>Install Benday</strong> from Google Play on your Android phone or tablet (Android 7 or newer).</div></li>
@@ -75,7 +75,7 @@
         </ol>
 
         <h2 id="servers">Supported servers</h2>
-        <p>Benday speaks <strong>Komga</strong>, <strong>Kavita</strong>, <strong>Stump</strong>, <strong>Suwayomi</strong>, <strong>BookOrbit</strong> and <strong>Audiobookshelf</strong> natively, through their own APIs, and reads from <strong>OPDS catalogs</strong>, the common feed format many servers offer. With Komga you get everything Benday does; with Kavita nearly all of it; with Stump the library, smart lists, progress and new books as they're scanned; with Suwayomi your manga library, its categories, progress and new chapters; with BookOrbit the library, its collections and smart scopes, progress and live updates; with Audiobookshelf the ebooks and comics of your book libraries, collections, progress and live updates; OPDS catalogs give you browsing, reading and downloads, and how much reaches the server depends on the server.</p>
+        <p>Benday speaks <strong>Komga</strong>, <strong>Kavita</strong>, <strong>Stump</strong>, <strong>Suwayomi</strong>, <strong>BookOrbit</strong> and <strong>Audiobookshelf</strong> natively, through their own APIs, and reads from <strong>OPDS catalogs</strong>, the common feed format many servers offer. With Komga you get everything Benday does; with Kavita nearly all of it; with Stump the library, smart lists, progress and new books as they're scanned; with Suwayomi your manga library, its categories, progress and new chapters; with BookOrbit the library, its collections and smart scopes, progress and live updates; with Audiobookshelf the ebooks and comics of your book libraries, collections, progress and live updates; OPDS catalogs give you browsing, reading and downloads, and how much reaches the server depends on the server. Without any of these, Benday reads from <a href="#webdav-folder">a plain folder on a WebDAV server</a> such as Nextcloud, Seafile or a NAS.</p>
         <h3>Komga, Kavita, Stump, Suwayomi, BookOrbit, Audiobookshelf and OPDS</h3>
         <div class="table-scroll">
           <table class="matrix">
@@ -113,6 +113,10 @@
               <tr><th scope="row">BookOrbit (OPDS)</th><td data-label="Pages">Downloaded, then read</td><td data-label="Progress" class="yes">Through KOReader sync, for downloaded books</td><td data-label="Read marks" class="yes">Yes, from KOReader sync</td><td data-label="Also">A KOReader login of its own if needed; offers to switch to full BookOrbit mode (3.4 and newer)</td></tr>
               <tr><th scope="row">Kavita (OPDS)</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress" class="yes">Yes, Kavita's own (Kavita 0.8 and newer)</td><td data-label="Read marks">Resumes at Kavita's page</td><td data-label="Also">Offers to switch to full Kavita mode (0.8.9 and newer)</td></tr>
               <tr><th scope="row">Komga (OPDS)</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress" class="yes">Yes, Komga's own</td><td data-label="Read marks">Resumes at Komga's page</td><td data-label="Also">Offers to switch to full Komga mode</td></tr>
+              <tr><th scope="row">Mylar3</th><td data-label="Pages" class="yes">Streamed</td><td data-label="Progress">On the device, or through a KOReader sync server you set</td><td data-label="Read marks">—</td><td data-label="Also">Its series, publishers, story arcs and read list; Mylar's OPDS has no search</td></tr>
+              <tr><th scope="row">Ubooquity</th><td data-label="Pages">Downloaded, then read (Ubooquity 3's page streaming doesn't work over OPDS)</td><td data-label="Progress">On the device, or through a KOReader sync server you set</td><td data-label="Read marks">—</td><td data-label="Also">Its folders as catalog pages</td></tr>
+              <tr><th scope="row">Jellyfin (OPDS plugin)</th><td data-label="Pages">Downloaded, then read</td><td data-label="Progress">On the device, or through a KOReader sync server you set</td><td data-label="Read marks">—</td><td data-label="Also">Jellyfin 12 with the OPDS plugin from its plugin catalog</td></tr>
+              <tr><th scope="row">COPS, dir2opds</th><td data-label="Pages">Downloaded, then read</td><td data-label="Progress">On the device, or through a KOReader sync server you set</td><td data-label="Read marks">—</td><td data-label="Also">COPS's sort options as filters</td></tr>
               <tr><th scope="row">Any other OPDS catalog</th><td data-label="Pages">Streamed where it offers OPDS-PSE, otherwise downloaded</td><td data-label="Progress">Yes if the catalog offers OPDS Progression, or through a KOReader sync server you set; otherwise on the device only</td><td data-label="Read marks">Yes with OPDS Progression, otherwise resumes at the page the catalog reports, if it does</td><td data-label="Also">—</td></tr>
             </tbody>
           </table>
@@ -158,6 +162,11 @@
               <tr><td>Suwayomi</td><td><code>https://server/api/opds/v1.2</code>; on 2.1 and newer, Benday signs in to full Suwayomi mode</td></tr>
               <tr><td>Grimmory, BookLore, BookOrbit</td><td><code>https://server/api/v1/opds</code>; on BookOrbit 3.4 and newer, Benday offers to switch to full BookOrbit mode with your account's password</td></tr>
               <tr><td>LANraragi</td><td><code>https://server/api/opds</code> with sign-in None, or <strong>API key</strong> with LANraragi's key (No-Fun Mode)</td></tr>
+              <tr><td>Mylar3</td><td><code>http://server:8090/opds</code>, or just the server's address; sign in with the OPDS login set in Mylar's settings</td></tr>
+              <tr><td>Ubooquity</td><td><code>http://server:2202/opds</code> (<code>…/ubooquity/opds</code> under its usual path prefix); turn on the OPDS feed in Ubooquity's admin page and sign in with a Ubooquity user</td></tr>
+              <tr><td>Jellyfin</td><td><code>http://server:8096/opds</code>, or just the server's address, with the OPDS plugin installed; sign in with your Jellyfin user</td></tr>
+              <tr><td>COPS</td><td><code>https://server/feed</code> (<code>…/index.php/feed</code> without URL rewriting), or just the server's address</td></tr>
+              <tr><td>dir2opds</td><td>The server's address, sign-in None</td></tr>
               <tr><td>Kavita</td><td><code>https://server/api/opds/&lt;api key&gt;</code></td></tr>
               <tr><td>Komga</td><td><code>https://server/opds/v1.2/catalog</code></td></tr>
             </tbody>
@@ -165,6 +174,19 @@
         </div>
         <p>If the server runs under a path, keep it in front (<code>https://example.com/calibre/opds</code>). Grimmory and BookLore also have a Komga-compatible address, but it is read-only: Benday points you to their OPDS catalog instead, which takes the same login. A Komga, Kavita, Stump, Suwayomi or BookOrbit catalog shows a banner on Home offering to switch to full mode; books you downloaded through the catalog stay readable under Downloads.</p>
         <p>Catalogs in the newer <strong>OPDS 2</strong> format work too: paste their address (<code>…/opds/v2/catalog</code> on Komga, <code>…/opds/v2.0/</code> on Codex, <code>…/opds/v2.0/catalog</code> on Stump). You browse, search and filter them as any catalog, and books are downloaded to read: Benday doesn't stream their pages yet. Progress reaches the server where the catalog offers OPDS Progression (Codex and Stump do). Books a library lends with copy protection (DRM) aren't offered. For Komga, Codex and Stump the 1.2 address above remains the better choice: pages stream, and Benday knows each server's extras there.</p>
+        <h3 id="webdav-folder">A folder on a WebDAV server</h3>
+        <p>No library server? Benday also reads comics and books straight from a folder on a WebDAV server: Nextcloud's or ownCloud's Files, Seafile, a NAS (Synology, QNAP), or <code>rclone serve webdav</code>. On the sign-in screen, turn on <strong>Folder on a WebDAV server</strong>, enter the folder's WebDAV address and sign in with your account (on Nextcloud, an app password if you use two-factor sign-in).</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Server</th><th>Folder address</th></tr></thead>
+            <tbody>
+              <tr><td>Nextcloud, ownCloud</td><td><code>https://cloud.example.com/remote.php/webdav/Comics</code> (the settings at the bottom of Files show yours); the server's own address opens all your files</td></tr>
+              <tr><td>Seafile</td><td><code>https://seafile.example.com/seafdav/My Library/Comics</code> (SeafDAV turned on by the admin)</td></tr>
+              <tr><td>A NAS, rclone, Apache</td><td>The WebDAV address and the folder under it, for example <code>http://192.168.1.20:5005/comics</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Benday lists CBZ, CBR (ZIP and RAR), PDF and EPUB files. If the folder's own folders hold folders of books (<code>Comics/</code>, <code>Books/</code>), each is a library; every folder with books in it is a series, its files in name order. A <code>cover.jpg</code> or <code>folder.jpg</code> in a folder is its cover, a picture with a book's name that book's. Books open once they are downloaded (comics and PDFs in the background, EPUBs as a download); progress is kept on the device, and travels between your devices with <a href="#sync">Sync between devices</a>. Search finds books and folders by name; Home shows Continue reading and the newest files. A server that asks for Digest sign-in works too, but shows no covers yet.</p>
         <h3>HTTPS and self-signed certificates</h3>
         <p>To read away from home, the server must be reachable from outside: through a reverse proxy with HTTPS, or a VPN such as WireGuard or Tailscale. Downloaded books work without any connection.</p>
         <p>Servers with a normal certificate (Let's Encrypt, for example) just work. If your server uses a <strong>self-signed certificate</strong>, Benday shows the certificate's details and fingerprint and asks whether to trust it. Only trust it if it's your server: Benday then remembers that certificate for that address and warns you if it ever changes.</p>
