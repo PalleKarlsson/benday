@@ -35,12 +35,14 @@
 
     <div class="wrap">
       <article class="prose" style="padding-block: 40px 72px">
-<p><em>Last updated: 28 October 2026</em></p>
+<p><em>Last updated: 29 October 2026</em></p>
 <p>Benday is a reader for comics, manga and webtoons stored on a server that
 you run or have access to: <a href="https://komga.org">Komga</a>,
 <a href="https://www.kavitareader.com">Kavita</a>, <a href="https://www.stumpapp.dev">Stump</a>,
 <a href="https://github.com/Suwayomi/Suwayomi-Server">Suwayomi</a>,
-<a href="https://github.com/bookorbit/bookorbit">BookOrbit</a> or an OPDS catalog. Benday is
+<a href="https://github.com/bookorbit/bookorbit">BookOrbit</a>,
+<a href="https://www.audiobookshelf.org">Audiobookshelf</a>, an OPDS catalog (calibre's
+content server among them) or a folder on a WebDAV server. Benday is
 developed by Palle Karlsson ("we"). This policy explains what the app does
 with your data.</p>
 <h2>The short version</h2>
@@ -59,7 +61,10 @@ only to the server you entered, to sign you in. For Kavita and Stump, Benday use
 your password once to get an API key for your account and stores only the
 key. On Stump, Benday creates that key on your account for this device,
 named "Benday (…)", and deletes the earlier keys it created for this
-device; you can see and revoke it in Stump's settings. If
+device; you can see and revoke it in Stump's settings. On Audiobookshelf, an
+admin account's password is used once in the same way, to create an API key
+named "Benday (…)"; other accounts keep the token Audiobookshelf issues at
+sign-in. Neither stores the password. If
 you enter a separate KOReader sync login for a catalog, it is stored the
 same way and sent only to that server's KOReader sync.</p>
 <p><strong>Your library and reading.</strong> Covers, pages and books are loaded from your
@@ -69,7 +74,9 @@ servers, directly or through the server's KOReader sync). On Komga,
 bookmarks, EPUB highlights (the highlighted text, its place in the book and
 your note), ratings, your Want to read list and per-series reader settings
 are also synced through your own Komga account, so they appear on your
-other devices; on other servers they stay on your device. Downloaded books,
+other devices; on other servers they stay on your device, except EPUB highlights on Kavita and BookOrbit, which are saved
+as the server's own annotations on your account there (the highlighted
+text, its place in the book, its colour and your note). Downloaded books,
 image caches and reading statistics stay on your device.</p>
 <p><strong>Optional services you choose to connect:</strong></p>
 <ul>
