@@ -2,16 +2,17 @@
 
 `build.py` builds the StarDict dictionaries for Benday's "Download" list
 (Settings › Dictionaries): English, Swedish (two Swedish–Swedish ones and a
-Swedish–English one), German, French and Spanish, from Wiktionary extracts
-on [kaikki.org](https://kaikki.org) (wiktextract JSONL), the Swedish
-Wiktionary's own dump and ISOF's Lexin. Design:
+Swedish–English one), German, French, Spanish and Japanese–English, from
+Wiktionary extracts on [kaikki.org](https://kaikki.org) (wiktextract
+JSONL), the Swedish Wiktionary's own dump, ISOF's Lexin and EDRDG's JMdict
+(T-145). Design:
 `docs/superpowers/specs/2026-10-28-epub-lookup-design.md` › "Offline
 dictionaries"; the Swedish sources:
 `docs/superpowers/specs/2026-10-28-swedish-dictionary-research.md`.
 
 ```bash
-tool/dictionaries/build.py                    # all seven; downloads what's missing or changed
-tool/dictionaries/build.py --lang sv,lexin-sv # some (keys: en sv sv-en lexin-sv de fr es)
+tool/dictionaries/build.py                    # all eight; downloads what's missing or changed
+tool/dictionaries/build.py --lang sv,lexin-sv # some (keys: en sv sv-en lexin-sv ja-en de fr es)
 tool/dictionaries/build.py --offline          # the cached dumps as they are
 tool/dictionaries/build.py --base-url https://…/releases/download/dictionaries-2026-10  # urls in the index
 tool/dictionaries/lookup.py --text build/dictionaries/wiktionary-sv-*/benday-wiktionary-sv.ifo hus gick
@@ -83,6 +84,7 @@ and zip times, sorted output).
 | sv | wiktionary-sv | Svensk ordbok (Wiktionary) | Swedish Wiktionary dump (`svwiktionary-latest-pages-articles.xml.bz2`), `svwiktionary.py` | Swedish | CC BY-SA 4.0 |
 | sv-en | wiktionary-sv-en | Swedish–English (Wiktionary) | kaikki.org: English Wiktionary › Swedish | English | CC BY-SA 4.0 |
 | lexin-sv | lexin-sv | Svenska ord (Lexin) | ISOF's Lexin "Svenska ord", 4th edition (`swe_swe.xml`), `lexin.py` | Swedish | CC BY 4.0 |
+| ja-en | jmdict-ja-en | Japanese–English (JMdict) | EDRDG's JMdict, English glosses (`JMdict_e.gz`), `jmdict.py` | English | CC BY-SA 4.0 (EDRDG licence) |
 | de | wiktionary-de | Deutsches Wörterbuch (Wiktionary) | kaikki.org: German Wiktionary › Deutsch | German | CC BY-SA 4.0 |
 | fr | wiktionary-fr | Dictionnaire français (Wiktionnaire) | kaikki.org: French Wiktionary › Français | French | CC BY-SA 4.0 |
 | es | wiktionary-es | Diccionario español (Wikcionario) | kaikki.org: Spanish Wiktionary › Español | Spanish | CC BY-SA 4.0 |
@@ -192,6 +194,36 @@ edition with a 2002 licence forbidding publication.
   only says "see X" (`akne` → `acne`) is a .syn row of X when X is in the
   dictionary.
 
+### JMdict (`jmdict.py`, T-145)
+
+`JMdict_e.gz` (10.6 MB; 60 MB of XML) from
+<https://www.edrdg.org/pub/Nihongo/JMdict_e.gz>: the Electronic Dictionary
+Research and Development Group's Japanese–English dictionary, the English
+glosses only (updated daily; its Last-Modified is the version). Read with
+`gzip` and `xml.etree.iterparse`; the file's own DTD defines the entities
+(`&n;` → "noun (common) (futsuumeishi)"), which the parser expands; the
+trailing romanised term is dropped ("noun (common)").
+
+- One article per headword: an entry's first kanji spelling (`<keb>`),
+  else its first reading (`<reb>`: する). Entries with the same headword
+  (the several 生) share an article, in the file's order.
+- Header: the first sense's parts of speech, the readings that go with the
+  headword (`<re_restr>`; `<re_nokanji>` readings aren't the kanji's), then
+  "also" and the other spellings (`有難う`: `ありがとう; also 有り難う`).
+- Senses: one per `<sense>` with glosses, `; `-joined; labels: the parts
+  of speech when they change from the previous sense (a sense without
+  `<pos>` takes the previous one's), `<field>`, `<misc>` ("word usually
+  written using kana alone"), `<dial>`; `<s_inf>` as a note. Left out:
+  cross-references (`<xref>`, `<ant>`), loanword sources (`<lsource>`),
+  the restriction of senses to some spellings (`<stagk>`, `<stagr>`),
+  priority codes. An entry without glosses is skipped.
+- Forms: every other spelling and every reading is a .syn row of the
+  headword, so まくら finds 枕 and 登る finds 上る's article. No
+  deinflection: a conjugated verb in a book (登り) isn't found (a
+  follow-up: Benday would deinflect before the lookup, as Yomitan does).
+- Names (夏目漱石) are in JMnedict, not JMdict (not built). Single kanji
+  are in KANJIDIC2 (same licence; not built either).
+
 ## Sizes (extracts of 2026-10-01 … 28)
 
 | Dictionary | Headwords | Forms (.syn) | .dict.dz | .idx | .syn | Archive | Unpacked |
@@ -203,6 +235,7 @@ edition with a 2002 licence forbidding publication.
 | de | 301,575 | 774,784 | 24.5 MB | 6.3 MB | 13.2 MB | 30.2 MB | 44.0 MB |
 | fr | 544,889 | 1,694,234 | 43.4 MB | 11.2 MB | 29.5 MB | 54.0 MB | 84.1 MB |
 | es | 395,035 | 594,302 | 10.1 MB | 7.7 MB | 9.2 MB | 15.0 MB | 27.0 MB |
+| ja-en (JMdict of 2026-10-30) | 215,888 | 280,278 | 6.5 MB | 4.6 MB | 6.2 MB | 10.5 MB | 17.3 MB |
 
 English is the largest: multi-word headwords are 22% of its text (43 MB
 of 198 MB uncompressed) and capitalised ones (mostly names) 15%.
@@ -226,12 +259,43 @@ what was left out. No share-alike. The app should show the attribution
 with the dictionary (name, licence, link). The build tool itself is
 Benday's code.
 
+JMdict is the property of the Electronic Dictionary Research and
+Development Group (EDRDG) and licensed CC BY-SA 4.0 under the Group's
+licence statement (<https://www.edrdg.org/edrdg/licence.html>, read
+2026-10-30). What it asks of Benday:
+
+- **Acknowledgement**: the use and source of the files in the
+  documentation, publicity and any website for the product, with links to
+  the EDRDG and its licence; in an app on a separate screen reached from a
+  menu ("About", "Sources"), not only a start-up page. `jmdict-ja-en`'s
+  `LICENSE.txt`, `.ifo` description and index `attribution` use EDRDG's
+  sample acknowledgement for a dictionary ("This publication has included
+  material from the JMdict (EDICT, etc.) dictionary files in accordance
+  with the licence provisions of the Electronic Dictionary Research and
+  Development Group") with both links; Benday shows the attribution, the
+  licence and its link on the dictionary's own page in Settings ›
+  Dictionaries. The website's credits page should say the same once the
+  dictionary is offered.
+- **Share-alike**: the converted dictionary is shared under CC BY-SA 4.0,
+  says what was changed, and its `LICENSE.txt` travels in the zip. The app
+  itself needn't be open source.
+- **No copyright claim** over the material and **no suggestion of the
+  EDRDG's endorsement** (both said in `LICENSE.txt`).
+- **Kept up to date**: "Failure to keep the versions up-to-date is a
+  violation of the licence to use the data." Software using the files must
+  have a procedure for updating them regularly (web servers at least
+  monthly). The Dictionaries workflow rebuilds every month (`cron:
+  '0 4 1 * *'`, since JMdict is offered: 2026-10-30) and the app offers
+  Update when the index lists a newer version.
+- The EDRDG asks for a donation where the use makes money (Benday is a
+  paid app on Play): the owner's decision.
+
 ## Publishing
 
 The public site repo (PalleKarlsson/benday) rebuilds and publishes the
 dictionaries with its Dictionaries workflow
 (`website/.github/workflows/dictionaries.yml` here, published with the
-website by `scripts/publish-website.sh`): every quarter, or by hand with
+website by `scripts/publish-website.sh`): every month, or by hand with
 *Run workflow*. Each run makes a release `dictionaries-<date>` holding the
 zips and replaces `dictionaries.json` on the fixed release `dictionaries`,
 the address the app reads:

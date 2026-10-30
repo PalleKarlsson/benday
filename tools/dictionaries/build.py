@@ -2,8 +2,9 @@
 """Builds Benday's offline dictionaries as StarDict (.ifo, .idx, .dict.dz,
 .syn) in a .zip with the licence, plus dictionaries.json. Sources:
 Wiktionary extracts from kaikki.org (wiktextract JSONL, CC BY-SA 4.0), the
-Swedish Wiktionary's own dump (CC BY-SA 4.0, parsed by svwiktionary.py) and
-ISOF's Lexin "Svenska ord" (CC BY 4.0, lexin.py).
+Swedish Wiktionary's own dump (CC BY-SA 4.0, parsed by svwiktionary.py),
+ISOF's Lexin "Svenska ord" (CC BY 4.0, lexin.py) and EDRDG's JMdict
+(Japanese–English, CC BY-SA 4.0, jmdict.py).
 
   tool/dictionaries/build.py                     # all dictionaries
   tool/dictionaries/build.py --lang sv,lexin-sv  # some (keys of DICTIONARIES)
@@ -32,6 +33,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import convert  # noqa: E402
+import jmdict  # noqa: E402
 import lexin  # noqa: E402
 import stardict  # noqa: E402
 import svwiktionary  # noqa: E402
@@ -42,7 +44,8 @@ USER_AGENT = 'Benday-dictionary-build/1 (+https://getbenday.com)'
 
 # Per dictionary (the key is --lang's and the cache folder's name):
 # `source` says how it is read (kaikki: wiktextract JSONL; svwiktionary:
-# the Wikimedia dump; lexin: ISOF's XML), `language` is the headwords'
+# the Wikimedia dump; lexin: ISOF's XML; jmdict: EDRDG's JMdict_e),
+# `language` is the headwords'
 # (the book's), `definitions` the language they are defined in. The
 # Wiktionary ones take the native edition where one can be had, else the
 # English Wiktionary's entries for the language. See README.md › Sources.
@@ -75,6 +78,12 @@ DICTIONARIES = {
         'name': 'Svenska ord (Lexin)',
         'definitions': 'sv',
     },
+    'ja-en': {
+        'source': 'jmdict', 'id': 'jmdict-ja-en', 'language': 'ja',
+        'url': 'https://www.edrdg.org/pub/Nihongo/JMdict_e.gz',
+        'name': 'Japanese–English (JMdict)',
+        'definitions': 'en',
+    },
     'de': {
         'source': 'kaikki', 'id': 'wiktionary-de', 'language': 'de',
         'url': f'{KAIKKI}/dewiktionary/Deutsch/kaikki.org-dictionary-Deutsch.jsonl.gz',
@@ -101,6 +110,15 @@ DICTIONARIES = {
 BY_SA = ('CC BY-SA 4.0', 'https://creativecommons.org/licenses/by-sa/4.0/')
 BY = ('CC BY 4.0', 'https://creativecommons.org/licenses/by/4.0/')
 LEXIN_PAGE = 'https://sprakresurser.isof.se/lexin/svenska/'
+EDRDG = 'https://www.edrdg.org/'
+EDRDG_LICENCE = 'https://www.edrdg.org/edrdg/licence.html'
+JMDICT_PAGE = 'https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project'
+
+
+AUTHORS = {
+    'lexin': 'Institutet för språk och folkminnen (Språkrådet)',
+    'jmdict': 'Electronic Dictionary Research and Development Group',
+}
 
 
 def ifo_lang(cfg: dict) -> str:
@@ -116,6 +134,18 @@ def licence_of(cfg: dict) -> tuple[str, str]:
 
 
 def attribution(cfg: dict) -> str:
+    if cfg['source'] == 'jmdict':
+        # EDRDG's sample acknowledgement for a dictionary, and its licence.
+        return ('This publication has included material from the JMdict '
+                '(EDICT, etc.) dictionary files in accordance with the '
+                'licence provisions of the Electronic Dictionary Research '
+                f'and Development Group ({EDRDG}). The files are the '
+                'property of the Group and used in conformance with its '
+                f'licence ({EDRDG_LICENCE}): {BY_SA[0]} ({BY_SA[1]}). '
+                'Converted to StarDict by Benday: reformatted; '
+                'cross-references, antonyms, loanword sources and sense '
+                'restrictions left out; other spellings and readings linked '
+                'to the headword.')
     if cfg['source'] == 'lexin':
         return ('Lexin: Svenska ord, 4th edition (fjärde versionen), '
                 'Institutet för språk och folkminnen (Språkrådet), revised '
@@ -158,6 +188,34 @@ def licence_text(key: str, cfg: dict, version: str, source: str) -> str:
     head = (f"{cfg['name']}\nVersion {version} (language: "
             f"{cfg['language']}, definitions in: {cfg['definitions']})\n\n"
             f"{attribution(cfg)}\n\n")
+    if cfg['source'] == 'jmdict':
+        return head + f"""Source: {source}
+JMdict/EDICT project: {JMDICT_PAGE}
+EDRDG licence statement: {EDRDG_LICENCE}
+
+JMdict is the property of the Electronic Dictionary Research and
+Development Group (EDRDG) and is used in conformance with the Group's
+licence. Benday claims no copyright over this material, and the EDRDG
+doesn't endorse Benday or this conversion.
+
+Licence: Creative Commons Attribution-ShareAlike 4.0 International
+({BY_SA[1]}; full text at
+https://creativecommons.org/licenses/by-sa/4.0/legalcode). You may copy,
+change and share it, also commercially, if you credit the EDRDG as above,
+link the licence, say that it was changed, and share your changes under
+the same licence. The EDRDG's licence also asks software that uses the
+files to keep them up to date: rebuild from the current JMdict regularly.
+
+Changes: converted from JMdict_e (the English glosses) to StarDict by
+Benday's build tool (tool/dictionaries/jmdict.py): one article per
+headword (its first kanji spelling, else its first reading) with the part
+of speech, the readings and other spellings, then one numbered sense per
+JMdict sense with its labels (part of speech, field, misc, dialect), its
+glosses and its note. Other spellings and readings are linked to the
+headword. Cross-references, antonyms, loanword sources and the
+restrictions of senses to some spellings were left out.
+
+""" + _FILES
     if cfg['source'] == 'lexin':
         return head + f"""Source: {source}
 Dataset page: {LEXIN_PAGE} (also https://researchdata.se/en/catalogue/dataset/ext0305-1)
@@ -322,6 +380,8 @@ def read_entries(path: Path, cfg: dict, workers: int):
     """The source at [path] as convert.Entry objects, in its order."""
     if cfg['source'] == 'lexin':
         return iter(lexin.read_entries(path))
+    if cfg['source'] == 'jmdict':
+        return iter(jmdict.read_entries(path))
     if cfg['source'] == 'svwiktionary':
         return _pooled(_convert_svwikt, _page_batches(path), workers)
     work = partial(convert.convert_lines, edition=cfg['edition'],
@@ -365,10 +425,9 @@ def build_dictionary(key: str, cfg: dict, source_path: Path, version: str,
     paths = stardict.write_stardict(
         work, base, built.articles, built.synonyms, {
             'bookname': cfg['name'],
-            'author': ('Institutet för språk och folkminnen (Språkrådet)'
-                       if cfg['source'] == 'lexin'
-                       else 'Wiktionary contributors'),
+            'author': AUTHORS.get(cfg['source'], 'Wiktionary contributors'),
             'website': (LEXIN_PAGE if cfg['source'] == 'lexin'
+                        else EDRDG if cfg['source'] == 'jmdict'
                         else f'https://{cfg["wiki"]}'),
             'description': attribution(cfg),
             'date': when.strftime('%Y.%m.%d'),
@@ -437,9 +496,9 @@ def main(argv=None) -> int:
     ap.add_argument('--base-url', default='REPLACE_WITH_HOSTING_URL',
                     help='where the archives will be hosted (for the index)')
     ap.add_argument('--input', type=Path,
-                    help='a local source file (JSONL(.gz), dump .xml.bz2 or '
-                         'Lexin XML) instead of the download (one --lang '
-                         'only)')
+                    help='a local source file (JSONL(.gz), dump .xml.bz2, '
+                         'Lexin XML or JMdict_e(.gz)) instead of the download '
+                         '(one --lang only)')
     ap.add_argument('--version', help='version for --input (YYYY-MM-DD)')
     ap.add_argument('--offline', action='store_true',
                     help='use the cached dumps without asking their servers')

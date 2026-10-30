@@ -1,5 +1,6 @@
-# Rebuilds Benday's offline dictionaries from Wiktionary (and Lexin) every
-# quarter and publishes them as release assets of this repository.
+# Rebuilds Benday's offline dictionaries from Wiktionary, Lexin and JMdict
+# every month (EDRDG's licence wants JMdict copies kept current) and
+# publishes them as release assets of this repository.
 #
 # Each run makes a release `dictionaries-<YYYY-MM-DD>` with the zips, and
 # replaces `dictionaries.json` on the fixed release `dictionaries`, which the
@@ -12,7 +13,7 @@ name: Dictionaries
 
 on:
   schedule:
-    - cron: '0 4 1 1,4,7,10 *' # 04:00 UTC on 1 Jan, Apr, Jul and Oct
+    - cron: '0 4 1 * *' # 04:00 UTC on the 1st of every month
   workflow_dispatch:
 
 permissions:
